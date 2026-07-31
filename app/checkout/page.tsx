@@ -1,0 +1,137 @@
+'use client';
+
+import { Suspense, useEffect, useState } from 'react';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import CheckoutForm from '@/lib/components/CheckoutForm';
+import { useCart } from '@/lib/components/CartContext';
+import type { ProductItem } from '@/lib/data/types';
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={null}>
+      <CheckoutPageInner />
+    </Suspense>
+  );
+}
+
+function CheckoutPageInner() {
+  const [orderStatus, setOrderStatus] = useState<'idle' | 'loading' | 'redirecting' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [productsMap, setProductsMap] = useState<Record<string, ProductItem>>({});
+
+  const { items, totalItems } = useCart();
+  const searchParams = useSearchParams();
+  const wasCancelled = searchParams.get('cancelled') === '1';
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const res = await fetch('/api/products');
+        if (!res.ok) return;
+        const data = await res.json();
+        const map: Record<string, ProductItem> = {};
+        data.products.forEach((p: ProductItem) => (map[p.id] = p));
+        setProductsMap(map);
+      } catch (e) {
+        // ignore product name enrichment failures
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const handleSubmit = async (formData: any) => {
+    if (items.length === 0) {
+      setErrorMessage('Your cart is empty. Add at least one item before placing an order.');
+      setOrderStatus('error');
+      return;
+    }
+
+    setOrderStatus('loading');
+    setErrorMessage(null);
+
+    const payload = {
+      ...formData,
+      items: items.map((i) => ({ productId: i.productId, quantity: i.quantity, size: i.size, color: i.color })),
+    };
+
+    try {
+      const response = await fetch('/api/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to create order');
+      }
+
+      if (!data.checkoutUrl) {
+        throw new Error('No checkout URL was returned. Please try again.');
+      }
+
+      setOrderStatus('redirecting');
+      // Cart is intentionally left intact until payment is confirmed (see
+      // /checkout/success), so cancelling out of PayFast doesn't lose the cart.
+      window.location.href = data.checkoutUrl;
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : 'An unexpected error occurred');
+      setOrderStatus('error');
+    }
+  };
+
+  return (
+    <main className="page-shell">
+      <section className="checkout-section">
+        <div className="page-heading">
+          <div>
+            <p className="eyebrow">Guest Checkout</p>
+            <h1>Complete your order</h1>
+          </div>
+          <div className="page-actions">
+            <Link href="/cart" className="button button-secondary">
+              Edit cart ({totalItems})
+            </Link>
+          </div>
+        </div>
+
+        {wasCancelled && (
+          <div className="error-panel">
+            <p className="error-message">Checkout was cancelled. Your cart is still saved below.</p>
+          </div>
+        )}
+
+        <div className="cart-summary">
+          <h2>Order Summary</h2>
+          {items.length === 0 ? (
+            <p>Your cart is empty.</p>
+          ) : (
+            <ul>
+              {items.map((it) => (
+                <li key={`${it.productId}-${it.size ?? ''}-${it.color ?? ''}`}>
+                  {productsMap[it.productId]?.name ?? it.productId}
+                  {(it.size || it.color) && ` (${[it.size, it.color].filter(Boolean).join(', ')})`} — Qty: {it.quantity}
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+
+        <CheckoutForm onSubmit={handleSubmit} isLoading={orderStatus === 'loading' || orderStatus === 'redirecting'} initialItems={items} />
+
+        {orderStatus === 'redirecting' && (
+          <p className="intro-copy">Redirecting you to secure checkout...</p>
+        )}
+
+        {orderStatus === 'error' && errorMessage && (
+          <div className="error-panel">
+            <p className="error-message">{errorMessage}</p>
+          </div>
+        )}
+      </section>
+    </main>
+  );
+}
