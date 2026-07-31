@@ -6,7 +6,7 @@ import { useState } from 'react';
 import type { ProductItem, CategoryItem } from '@/lib/data/types';
 import { useCart } from '@/lib/components/CartContext';
 import { formatPrice } from '@/lib/utils/currency';
-import { ArrowRight, Zap, Search } from 'lucide-react';
+import { ArrowRight, Search } from 'lucide-react';
 
 interface ProductsExplorerProps {
   initialProducts: ProductItem[];
@@ -45,10 +45,9 @@ export default function ProductsExplorer({ initialProducts, initialCategories }:
           <Search className="w-5 h-5" />
           <input
             type="text"
-            placeholder="Search services..."
+            placeholder="Search products..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
           />
         </div>
 
@@ -57,7 +56,7 @@ export default function ProductsExplorer({ initialProducts, initialCategories }:
             className={`filter-btn ${selectedCategory === 'all' ? 'active' : ''}`}
             onClick={() => setSelectedCategory('all')}
           >
-            All Services
+            All Products
           </button>
           {initialCategories.map((category) => (
             <button
@@ -80,12 +79,12 @@ export default function ProductsExplorer({ initialProducts, initialCategories }:
                 <img src={product.images[0]} alt={product.name} className="product-card-image" />
               )}
               <div className="product-card-header">
-                <div className="product-badge">
-                  <Zap className="w-4 h-4" />
-                  <span>Service</span>
-                </div>
-                {product.stockQuantity === null && (
-                  <span className="availability-badge">Open for booking</span>
+                {product.stockQuantity === null ? (
+                  <span className="availability-badge">Always in stock</span>
+                ) : product.stockQuantity > 0 ? (
+                  <span className="availability-badge">{product.stockQuantity} in stock</span>
+                ) : (
+                  <span className="availability-badge">Sold out</span>
                 )}
               </div>
 
@@ -113,7 +112,7 @@ export default function ProductsExplorer({ initialProducts, initialCategories }:
           ))
         ) : (
           <div className="no-products">
-            <p>No services found matching your search.</p>
+            <p>No products found matching your search.</p>
             <Link href="/products" className="button button-secondary">
               Clear filters
             </Link>
