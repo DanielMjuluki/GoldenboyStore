@@ -3,3 +3,4 @@ node_modules
 .vercel
 tiktok_auth.sh
 *.sh
+.env*

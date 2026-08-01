@@ -128,7 +128,7 @@ export function verifyPayfastSignature(fields: Record<string, string>): boolean 
 
   const pairs: string[] = [];
   for (const [key, value] of Object.entries(rest)) {
-    if (value !== undefined && value !== '') {
+    if (value !== undefined) {
       pairs.push(`${key}=${payfastEncode(value)}`);
     }
   }
