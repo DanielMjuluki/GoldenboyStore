@@ -67,15 +67,15 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
       <section className="page-heading">
         <div>
-          <p className="eyebrow">Service details</p>
+          <p className="eyebrow">Product details</p>
           <h1>{product.name}</h1>
           <p className="intro-copy">
-            Explore availability, scope, and booking details for this offering before you reserve it.
+            Check sizing, availability, and pricing before you add it to your cart.
           </p>
         </div>
         <div className="page-actions">
           <Link href="/products" className="button button-secondary">
-            Back to services
+            Back to shop
           </Link>
         </div>
       </section>
@@ -90,7 +90,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <dt>Price</dt>
               <dd>{formatPrice(product.priceCents, product.currency)}</dd>
               <dt>Availability</dt>
-              <dd>{product.stockQuantity === null ? 'Open for booking' : `${product.stockQuantity} available`}</dd>
+              <dd>{product.stockQuantity === null ? 'Always in stock' : `${product.stockQuantity} available`}</dd>
               <dt>Category</dt>
               <dd>{product.categoryIds.length > 0 ? product.categoryIds.join(', ') : 'General'}</dd>
             </dl>

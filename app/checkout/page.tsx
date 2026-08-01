@@ -41,6 +41,25 @@ function CheckoutPageInner() {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    // When the browser restores this page from its back-forward cache
+    // (e.g. pressing back after we sent the customer to PayFast or
+    // WhatsApp via window.location.href), it can show the exact frozen
+    // React state from before navigation — which would still say
+    // "Processing..." with the form disabled. event.persisted === true
+    // means it came from bfcache rather than a fresh load, so reset the
+    // status back to idle in that case.
+    const handlePageShow = (event: PageTransitionEvent) => {
+      if (event.persisted) {
+        setOrderStatus('idle');
+        setErrorMessage(null);
+      }
+    };
+
+    window.addEventListener('pageshow', handlePageShow);
+    return () => window.removeEventListener('pageshow', handlePageShow);
+  }, []);
+
   const handleSubmit = async (formData: any) => {
     if (items.length === 0) {
       setErrorMessage('Your cart is empty. Add at least one item before placing an order.');
