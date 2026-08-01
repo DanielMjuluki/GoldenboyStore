@@ -22,10 +22,12 @@ export async function POST(request: Request) {
   if (!verifyPayfastSignature(fields)) {
     logError('PayFast ITN signature verification failed', new Error('Invalid signature'), {
       mPaymentId: fields.m_payment_id,
+      // TEMPORARY debug fields — remove once the mismatch is found.
+      rawBody,
+      receivedSignature: fields.signature,
     });
     return NextResponse.json({ error: 'Invalid signature' }, { status: 400 });
   }
-
   const orderId = fields.m_payment_id;
   if (!orderId) {
     logError('PayFast ITN received with no m_payment_id', new Error('Missing m_payment_id'));
