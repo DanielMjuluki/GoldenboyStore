@@ -22,6 +22,7 @@ export default function CheckoutForm({ onSubmit, isLoading, initialItems = [] }:
     },
     items: initialItems.length > 0 ? initialItems : [{ productId: 'sample_1', quantity: 1 }],
     note: '',
+    paymentMethod: 'eft' as 'payfast' | 'eft',
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -173,6 +174,42 @@ export default function CheckoutForm({ onSubmit, isLoading, initialItems = [] }:
             />
             <p className="char-count">{formData.note.length} / 500</p>
           </div>
+        </div>
+
+        <div className="form-section">
+          <legend>Payment Method</legend>
+          <div className="payment-method-options">
+            <label className="payment-method-option">
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="eft"
+                checked={formData.paymentMethod === 'eft'}
+                onChange={() => setFormData((prev) => ({ ...prev, paymentMethod: 'eft' }))}
+              />
+              <span>EFT / Bank Transfer (via WhatsApp)</span>
+            </label>
+            <label className="payment-method-option">
+              <input
+                type="radio"
+                name="paymentMethod"
+                value="payfast"
+                checked={formData.paymentMethod === 'payfast'}
+                onChange={() => setFormData((prev) => ({ ...prev, paymentMethod: 'payfast' }))}
+              />
+              <span>Pay Online (Card / PayFast)</span>
+            </label>
+          </div>
+
+          {formData.paymentMethod === 'eft' && (
+            <div className="bank-details-panel">
+              <p><strong>Bank:</strong> Standard Bank</p>
+              <p><strong>Account Number:</strong> 10266420972</p>
+              <p className="intro-copy">
+                After placing your order, you&rsquo;ll be taken to WhatsApp to confirm and send proof of payment.
+              </p>
+            </div>
+          )}
         </div>
 
         <div className="form-actions">

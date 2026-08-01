@@ -69,11 +69,23 @@ function CheckoutPageInner() {
         throw new Error(data.error || 'Failed to create order');
       }
 
+      setOrderStatus('redirecting');
+
+      if (data.paymentMethod === 'eft') {
+        // EFT flow: no PayFast redirect. Send the customer to WhatsApp to
+        // confirm and send proof of payment. Cart is left intact until the
+        // store owner manually marks the order as paid.
+        if (!data.whatsappUrl) {
+          throw new Error('No WhatsApp link was returned. Please try again.');
+        }
+        window.location.href = data.whatsappUrl;
+        return;
+      }
+
       if (!data.checkoutUrl) {
         throw new Error('No checkout URL was returned. Please try again.');
       }
 
-      setOrderStatus('redirecting');
       // Cart is intentionally left intact until payment is confirmed (see
       // /checkout/success), so cancelling out of PayFast doesn't lose the cart.
       window.location.href = data.checkoutUrl;

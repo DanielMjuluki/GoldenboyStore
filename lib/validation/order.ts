@@ -22,6 +22,7 @@ export const orderPayloadSchema = z.object({
   shippingAddress: shippingAddressSchema,
   items: z.array(orderItemSchema).min(1, 'At least one order item is required'),
   note: z.string().trim().max(500).optional(),
+  paymentMethod: z.enum(['payfast', 'eft']).default('payfast'),
 });
 
 export type OrderPayload = z.infer<typeof orderPayloadSchema>;
