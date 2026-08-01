@@ -37,8 +37,23 @@ export function getPayfastProcessUrl(): string {
 // PayFast's own signature examples use PHP's urlencode(), which encodes
 // spaces as '+' rather than '%20'. Signatures won't match PayFast's if we
 // don't do the same.
+// PayFast's own signature examples use PHP's urlencode(), which differs from
+// JS's encodeURIComponent() in two ways: (1) it encodes spaces as '+' rather
+// than '%20', and (2) it also escapes ! ' ( ) * ~ — characters that
+// encodeURIComponent leaves untouched as "unreserved" per RFC 3986. If our
+// encoding doesn't match PHP's byte-for-byte, PayFast recomputes a different
+// signature than ours and rejects the request — even though everything else
+// about the request is valid. This bit real orders (item descriptions like
+// "Kingdome-Tshirt (S, Black)" contain parentheses).
 function payfastEncode(value: string): string {
-  return encodeURIComponent(value).replace(/%20/g, '+');
+  return encodeURIComponent(value)
+    .replace(/%20/g, '+')
+    .replace(/!/g, '%21')
+    .replace(/'/g, '%27')
+    .replace(/\(/g, '%28')
+    .replace(/\)/g, '%29')
+    .replace(/\*/g, '%2A')
+    .replace(/~/g, '%7E');
 }
 
 interface CheckoutFields {
