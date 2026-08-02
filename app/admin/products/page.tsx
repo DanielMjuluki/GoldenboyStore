@@ -45,7 +45,7 @@ export default function AdminProductsPage() {
   // so the dropdown always reflects the real category list, rather than a
   // hardcoded set that can drift out of sync with actual data.
   useEffect(() => {
-    fetch('/api/products')
+    fetch('/api/products', { cache: 'no-store' })
       .then((res) => (res.ok ? res.json() : { categories: [] }))
       .then((data) => setCategories(data.categories ?? []))
       .catch(() => setCategories([]));
