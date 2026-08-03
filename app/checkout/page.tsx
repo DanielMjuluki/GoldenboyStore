@@ -140,15 +140,23 @@ function CheckoutPageInner() {
           {items.length === 0 ? (
             <p>Your cart is empty.</p>
           ) : (
-            <ul>
-              {items.map((it) => (
-                <li key={`${it.productId}-${it.size ?? ''}-${it.color ?? ''}`}>
-                  {productsMap[it.productId]?.name ?? it.productId}
-                  {(it.size || it.color) && ` (${[it.size, it.color].filter(Boolean).join(', ')})`} — Qty: {it.quantity}
-                </li>
-              ))}
-            </ul>
-          )}
+             <ul className="checkout-summary-list">
+              {items.map((it) => {
+                const product = productsMap[it.productId];
+                return (
+                  <li key={`${it.productId}-${it.size ?? ''}-${it.color ?? ''}`} className="checkout-summary-item">
+                    {product?.images?.[0] && (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={product.images[0]} alt={product.name} className="checkout-summary-image" />
+                    )}
+                    <span>
+                      {product?.name ?? it.productId}
+                      {(it.size || it.color) && ` (${[it.size, it.color].filter(Boolean).join(', ')})`} — Qty: {it.quantity}
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>          )}
         </div>
 
         <CheckoutForm onSubmit={handleSubmit} isLoading={orderStatus === 'loading' || orderStatus === 'redirecting'} initialItems={items} />
