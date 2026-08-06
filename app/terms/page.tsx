@@ -19,7 +19,7 @@ export default function TermsPage() {
       <section className="section-block terms-content">
         <h2>About us</h2>
         <p>
-          Goldenstore.co.za is operated by Goldenboy Mjuluki, based in Overbaakens, Fairview,
+          Goldenstore.co.za is operated by Yonela Mjuluki, trading as Goldenboy / Goldenstore, based in Overbaakens, Fairview,
           South Africa. We sell branded merchandise and digital products directly to customers
           across South Africa.
         </p>
