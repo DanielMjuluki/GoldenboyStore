@@ -63,7 +63,7 @@ export default function TermsPage() {
         </ul>
         <p>
           To start an exchange, contact us via WhatsApp at 067 820 8752 or email
-          goldenboymj@gmail.com with your order details.
+          Goldenboimj@gmail.com with your order details.
         </p>
 
         <h2>Cancellations</h2>
@@ -87,7 +87,7 @@ export default function TermsPage() {
         </p>
         <ul>
           <li>WhatsApp: 067 820 8752</li>
-          <li>Email: goldenboymj@gmail.com</li>
+          <li>Email: Goldenboimj@gmail.com</li>
         </ul>
       </section>
     </main>
