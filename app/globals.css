@@ -2542,3 +2542,21 @@ a {
 .products-grid .product-card .product-description {
   display: none !important;
 }
+
+/* Terms & Conditions page */
+.terms-content h2 {
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.terms-content p,
+.terms-content li {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.terms-content ul {
+  padding-left: 1.25rem;
+  margin: 0.5rem 0;
+}
