@@ -84,6 +84,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               ))}
             </div>
           </div>
+            <div className="footer-legal">
+              <Link href="/terms">Terms &amp; Conditions</Link>
+            </div>
         </footer>
       </body>
     </html>
