@@ -44,16 +44,34 @@ export default function DonatePage() {
     <main className="page-shell">
       <section className="page-heading">
         <div>
-          <p className="eyebrow">Support the work</p>
-          <h1>Help support and grow GoldenStore</h1>
+          <p className="eyebrow">My story</p>
+          <h1>This is bigger than a store</h1>
           <p className="intro-copy">
-            Every contribution, big or small, directly supports the content, products, and
-            projects you see here. Thank you for being part of this.
+            I recently left my parents' house. Not out of conflict, but because I needed to give
+            my art and my dream the kind of full, uninterrupted dedication that home life
+            couldn't allow for. Right now I'm staying with a friend, and the plan is to be here
+            for about a month while I apply for NSFAS and head back to residence to continue my
+            studies. I'm still a college student, studying Mechanical Engineering, alongside all
+            of this.
+          </p>
+          <p className="intro-copy">
+            My dream is bigger than any one product or platform: I want to help people, especially
+            young men like me, all around, become the greatest version of themselves through the
+            talent God gave them. My father once told me something I carry with me every day:
+          </p>
+          <p className="intro-copy" style={{ fontStyle: 'italic' }}>
+            "Only those who are able to seek for help can have the heart to help others."
+          </p>
+          <p className="intro-copy">
+            So this is me, seeking help, honestly and humbly, so I can keep building something
+            that will one day help a lot more people than just me. Every contribution, big or
+            small, goes directly toward that. Thank you for being part of it.
           </p>
         </div>
       </section>
 
       <section className="section-block">
+        <p className="eyebrow">Support</p>
         <form onSubmit={handleSubmit} className="donation-form">
           <div className="donation-amounts">
             {PRESET_AMOUNTS.map((preset) => (
