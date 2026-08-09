@@ -59,6 +59,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/projects">Projects</Link>
               <Link href="/services">Services</Link>
               <Link href="/products">Shop</Link>
+              <Link href="/donate">Donate</Link>
               <Link href="/cart">Cart</Link>
               <div className="header-social">
                 {SOCIAL_LINKS.map((s) => (

@@ -34,6 +34,23 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Missing m_payment_id' }, { status: 400 });
   }
 
+  // Donations don't have an order record — just notify on success.
+  if (orderId.startsWith('donation-')) {
+    if (fields.payment_status === 'COMPLETE') {
+      try {
+        const { sendDonationNotification } = await import('@/lib/utils/email');
+        await sendDonationNotification({
+          amount: fields.amount_gross || fields.amount,
+          name: fields.name_first,
+          email: fields.email_address,
+        });
+      } catch (emailError) {
+        logError('Donation confirmed but notification email failed', emailError, { orderId });
+      }
+    }
+    return NextResponse.json({ received: true }, { status: 200 });
+  }
+
   try {
     const order = await dataStore.findOrderById(orderId);
     if (!order) {

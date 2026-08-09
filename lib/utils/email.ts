@@ -90,3 +90,26 @@ export async function sendAdminOrderNotification(orderId: string, payload: Order
 
   await transporter.sendMail(message);
 }
+
+export async function sendDonationNotification(donation: { amount?: string; name?: string; email?: string }) {
+  if (!SMTP_HOST || !SMTP_USER || !SMTP_PASS || !EMAIL_FROM) {
+    return;
+  }
+
+  const transporter = nodemailer.createTransport({
+    host: SMTP_HOST,
+    port: SMTP_PORT,
+    secure: SMTP_PORT === 465,
+    auth: { user: SMTP_USER, pass: SMTP_PASS },
+  });
+
+  await transporter.sendMail({
+    from: EMAIL_FROM,
+    to: ADMIN_EMAIL,
+    subject: `New donation received — R${donation.amount ?? '?'}`,
+    text:
+      `You received a donation.\n\n` +
+      `Amount: R${donation.amount ?? 'unknown'}\n` +
+      `From: ${donation.name ?? 'Anonymous'} (${donation.email ?? 'no email given'})\n`,
+  });
+}
