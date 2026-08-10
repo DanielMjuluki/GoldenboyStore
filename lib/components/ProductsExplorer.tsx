@@ -13,12 +13,15 @@ interface ProductsExplorerProps {
   initialCategories: CategoryItem[];
 }
 
-/**
- * Client-side search/filter/cart interactivity layer. Data itself is fetched
- * server-side (see app/products/page.tsx) and passed in as props, so the
- * first paint doesn't have to wait on a client -> /api/products round trip.
- */
+const STORE_TABS = [
+  { id: 'all', label: 'All' },
+  { id: 'general-store', label: 'Golden General Store' },
+  { id: 'kingdome-apparel', label: 'Kingdome Fashion Apparel' },
+  { id: 'goldenboy-merch', label: 'Goldenboy Merch' },
+];
+
 export default function ProductsExplorer({ initialProducts, initialCategories }: ProductsExplorerProps) {
+  const [selectedTab, setSelectedTab] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
@@ -32,14 +35,28 @@ export default function ProductsExplorer({ initialProducts, initialCategories }:
   const categoryMap = new Map(initialCategories.map((category) => [category.id, category]));
 
   const filteredProducts = initialProducts.filter((product) => {
+    const matchesTab = selectedTab === 'all' || product.categoryIds.includes(selectedTab);
     const matchesCategory = selectedCategory === 'all' || product.categoryIds.includes(selectedCategory);
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.description.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesCategory && matchesSearch;
+    return matchesTab && matchesCategory && matchesSearch;
   });
 
   return (
     <>
+      <div className="store-tabs" role="tablist" aria-label="Store sections">
+        {STORE_TABS.map((tab) => (
+          <button
+            key={tab.id}
+            className={`filter-btn ${selectedTab === tab.id ? 'active' : ''}`}
+            onClick={() => setSelectedTab(tab.id)}
+            type="button"
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
       <section className="products-controls">
         <div className="search-bar">
           <Search className="w-5 h-5" />
@@ -94,7 +111,7 @@ export default function ProductsExplorer({ initialProducts, initialCategories }:
                 <div className="product-price">{formatPrice(product.priceCents, product.currency)}</div>
                 {product.categoryIds.length > 0 && (
                   <div className="product-category">
-                    {product.categoryIds.map((catId) => categoryMap.get(catId)?.name).join(', ')}
+                    {product.categoryIds.map((catId) => categoryMap.get(catId)?.name).filter(Boolean).join(', ')}
                   </div>
                 )}
               </div>

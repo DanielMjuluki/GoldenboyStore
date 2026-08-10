@@ -35,15 +35,11 @@ export default function AdminProductsPage() {
   const [loadingProducts, setLoadingProducts] = useState(false);
   const [message, setMessage] = useState('');
 
-  // Restore a previously-entered admin key for this browser session only.
   useEffect(() => {
     const stored = sessionStorage.getItem(ADMIN_KEY_STORAGE);
     if (stored) setAdminKey(stored);
   }, []);
 
-  // Categories come from the public products endpoint (no admin key needed)
-  // so the dropdown always reflects the real category list, rather than a
-  // hardcoded set that can drift out of sync with actual data.
   useEffect(() => {
     fetch('/api/products', { cache: 'no-store' })
       .then((res) => (res.ok ? res.json() : { categories: [] }))
@@ -90,7 +86,6 @@ export default function AdminProductsPage() {
     const key = keyInput.trim();
     if (!key) return;
 
-    // Validate the key against the API before trusting it.
     try {
       const response = await fetch('/api/admin/products', { headers: authHeaders(key) });
       if (response.status === 401) {
@@ -128,8 +123,16 @@ export default function AdminProductsPage() {
     }
   };
 
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFormData({ ...formData, categoryIds: e.target.value ? [e.target.value] : [] });
+  const toggleCategory = (categoryId: string) => {
+    setFormData((prev) => {
+      const has = prev.categoryIds.includes(categoryId);
+      return {
+        ...prev,
+        categoryIds: has
+          ? prev.categoryIds.filter((id) => id !== categoryId)
+          : [...prev.categoryIds, categoryId],
+      };
+    });
   };
 
   const startEdit = (product: ProductItem) => {
@@ -343,15 +346,22 @@ export default function AdminProductsPage() {
               />
             </div>
             <div className="form-field">
-              <label>Category</label>
-              <select value={formData.categoryIds[0] || ''} onChange={handleCategoryChange} required>
-                <option value="">Select...</option>
+              <label>Categories</label>
+              <div className="category-checkboxes">
                 {categories.map((category) => (
-                  <option key={category.id} value={category.id}>
+                  <label key={category.id} className="category-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={formData.categoryIds.includes(category.id)}
+                      onChange={() => toggleCategory(category.id)}
+                    />
                     {category.name}
-                  </option>
+                  </label>
                 ))}
-              </select>
+              </div>
+              <p className="field-hint">
+                Check a store section (e.g. Kingdome Fashion Apparel) and a product type (e.g. Merch) — a product can have both.
+              </p>
               {categories.length === 0 && (
                 <p className="field-hint">No categories found yet — check your data source.</p>
               )}
