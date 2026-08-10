@@ -2572,3 +2572,141 @@ a {
   flex-wrap: wrap;
   gap: 0.6rem;
 }
+
+.donate-hero {
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.donate-hero-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(245, 200, 66, 0.15);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+}
+
+.donate-hero h1 {
+  margin: 0.3rem 0 1.5rem;
+}
+
+.donate-story-card {
+  text-align: left;
+  background: var(--overlay-02);
+  border: 1px solid var(--overlay-08);
+  border-radius: 20px;
+  padding: 1.75rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.donate-story-card p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.donate-story-card blockquote {
+  margin: 0;
+  padding: 0.9rem 1.2rem;
+  border-left: 3px solid var(--accent);
+  font-style: italic;
+  background: rgba(245, 200, 66, 0.08);
+  border-radius: 0 12px 12px 0;
+}
+
+.donate-form-section {
+  display: flex;
+  justify-content: center;
+}
+
+.donation-card {
+  width: 100%;
+  max-width: 520px;
+  background: var(--overlay-02);
+  border: 1px solid var(--overlay-08);
+  border-radius: 22px;
+  padding: 2rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.donation-amounts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.donation-amount-btn {
+  padding: 0.85rem 0.5rem;
+  border-radius: 14px;
+  border: 1px solid var(--overlay-12);
+  background: var(--overlay-04);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.donation-amount-btn:hover {
+  border-color: rgba(245, 200, 66, 0.4);
+}
+
+.donation-amount-active {
+  background: linear-gradient(135deg, var(--accent), #e0b53a);
+  color: #1a1400;
+  border-color: transparent;
+}
+
+.donation-divider {
+  height: 1px;
+  background: var(--overlay-08);
+  margin: 0.4rem 0;
+}
+
+.donation-error {
+  color: #ff6b6b;
+}
+
+.donation-submit {
+  width: 100%;
+  justify-content: center;
+  padding: 0.9rem;
+  font-size: 1rem;
+  margin-top: 0.3rem;
+}
+
+.donation-secure {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  text-align: left;
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .donate-story-card {
+    padding: 1.25rem;
+  }
+
+  .donation-card {
+    padding: 1.25rem;
+    border-radius: 18px;
+  }
+
+  .donation-amounts {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  .donation-amount-btn {
+    padding: 0.7rem 0.4rem;
+    font-size: 0.85rem;
+  }
+}

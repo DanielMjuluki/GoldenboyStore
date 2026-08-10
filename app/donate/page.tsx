@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
+import { Heart, ShieldCheck } from 'lucide-react';
 
-const PRESET_AMOUNTS = [50, 100, 250, 500];
+const PRESET_AMOUNTS = [10, 25, 50, 100, 250, 500];
 
 export default function DonatePage() {
   const [amount, setAmount] = useState<number | null>(100);
@@ -41,12 +42,16 @@ export default function DonatePage() {
   };
 
   return (
-    <main className="page-shell">
-      <section className="page-heading">
-        <div>
-          <p className="eyebrow">My story</p>
-          <h1>This is bigger than a store</h1>
-          <p className="intro-copy">
+    <main className="page-shell donate-page">
+      <section className="donate-hero">
+        <div className="donate-hero-icon">
+          <Heart className="w-6 h-6" />
+        </div>
+        <p className="eyebrow">My story</p>
+        <h1>This is bigger than a store</h1>
+
+        <div className="donate-story-card">
+          <p>
             I recently left my parents' house. Not out of conflict, but because I needed to give
             my art and my dream the kind of full, uninterrupted dedication that home life
             couldn't allow for. Right now I'm staying with a friend, and the plan is to be here
@@ -54,15 +59,15 @@ export default function DonatePage() {
             studies. I'm still a college student, studying Mechanical Engineering, alongside all
             of this.
           </p>
-          <p className="intro-copy">
+          <p>
             My dream is bigger than any one product or platform: I want to help people, especially
             young men like me, all around, become the greatest version of themselves through the
             talent God gave them. My father once told me something I carry with me every day:
           </p>
-          <p className="intro-copy" style={{ fontStyle: 'italic' }}>
+          <blockquote>
             "Only those who are able to seek for help can have the heart to help others."
-          </p>
-          <p className="intro-copy">
+          </blockquote>
+          <p>
             So this is me, seeking help, honestly and humbly, so I can keep building something
             that will one day help a lot more people than just me. Every contribution, big or
             small, goes directly toward that. Thank you for being part of it.
@@ -70,15 +75,16 @@ export default function DonatePage() {
         </div>
       </section>
 
-      <section className="section-block">
-        <p className="eyebrow">Support</p>
-        <form onSubmit={handleSubmit} className="donation-form">
+      <section className="donate-form-section">
+        <form onSubmit={handleSubmit} className="donation-card">
+          <p className="eyebrow">Choose an amount</p>
+
           <div className="donation-amounts">
             {PRESET_AMOUNTS.map((preset) => (
               <button
                 key={preset}
                 type="button"
-                className={`variant-pill ${amount === preset && !customAmount ? 'variant-pill-active' : ''}`}
+                className={`donation-amount-btn ${amount === preset && !customAmount ? 'donation-amount-active' : ''}`}
                 onClick={() => {
                   setAmount(preset);
                   setCustomAmount('');
@@ -101,6 +107,8 @@ export default function DonatePage() {
             />
           </label>
 
+          <div className="donation-divider" />
+
           <label className="contact-field">
             <span>Your name (optional)</span>
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Your name" />
@@ -121,13 +129,14 @@ export default function DonatePage() {
             />
           </label>
 
-          {error && <p className="contact-hint" style={{ color: '#ff6b6b' }}>{error}</p>}
+          {error && <p className="contact-hint donation-error">{error}</p>}
 
-          <button type="submit" className="button button-primary" disabled={loading}>
+          <button type="submit" className="button button-primary donation-submit" disabled={loading}>
             {loading ? 'Redirecting to PayFast…' : `Donate ${effectiveAmount ? `R${effectiveAmount}` : ''}`}
           </button>
 
-          <p className="contact-hint">
+          <p className="contact-hint donation-secure">
+            <ShieldCheck className="w-4 h-4" />
             Payments are processed securely through PayFast. You'll be redirected there to
             complete your donation.
           </p>
