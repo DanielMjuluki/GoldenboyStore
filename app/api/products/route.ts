@@ -1,6 +1,12 @@
 import { NextResponse } from 'next/server';
 import { dataStore } from '../../../lib/data';
 
+// Force this route to run fresh on every request instead of being
+// statically frozen at build time — otherwise sheet edits (new
+// categories, renamed ones, stock changes) never show up until the
+// next deploy, no matter how long you wait or reload.
+export const dynamic = 'force-dynamic';
+
 // Product/category data changes infrequently. Allow short edge/browser
 // caching with background revalidation so repeat visits (cart, checkout,
 // products page) don't all force a fresh data-store hit.
