@@ -12,6 +12,7 @@ export interface ProductItem {
   status: ProductStatus;
   sizes?: string[];
   colors?: string[];
+  compareAtPriceCents?: number | null;
 }
 
 export interface CategoryItem {
