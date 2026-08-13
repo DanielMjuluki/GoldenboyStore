@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ArrowRight, Loader, Code2, Palette } from 'lucide-react';
 import type { BrandStats } from '@/lib/data/types';
+import PromoCarousel from '@/lib/components/PromoCarousel';
 
 // Swap this for your actual latest-upload video ID once you have it —
 // this is just a working placeholder so the player is guaranteed to load.
@@ -97,6 +98,8 @@ export default function HomePage() {
           )}
         </div>
       </section>
+
+      <PromoCarousel />
 
       <section className="section-block">
         <div className="section-heading">
