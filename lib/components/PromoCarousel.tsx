@@ -14,7 +14,7 @@ export default function PromoCarousel() {
   useEffect(() => {
     fetch('/api/products')
       .then((res) => res.json())
-      .then((data) => setProducts(data.products ?? []))
+      .then((data) => setProducts((data.products ?? []).filter((p: ProductItem) => p.compareAtPriceCents)))
       .catch((err) => console.error('Failed to load promo products:', err))
       .finally(() => setLoading(false));
   }, []);
@@ -33,8 +33,8 @@ export default function PromoCarousel() {
     <section className="section-block">
       <div className="section-heading">
         <div>
-          <p className="eyebrow">Merch</p>
-          <h2>Shop the drops</h2>
+          <p className="eyebrow">Promotions</p>
+          <h2>Limited-time deals</h2>
         </div>
         <div className="carousel-arrows">
           <button type="button" onClick={() => scroll('left')} aria-label="Scroll left" className="carousel-arrow">
