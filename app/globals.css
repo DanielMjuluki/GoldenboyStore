@@ -2710,3 +2710,105 @@ a {
     font-size: 0.85rem;
   }
 }
+
+/* Homepage promo carousel */
+.carousel-arrows {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.carousel-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.carousel-arrow:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.promo-carousel {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 0.5rem;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.promo-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.promo-card {
+  flex: 0 0 200px;
+  scroll-snap-align: start;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+.promo-card-image-wrap {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--overlay-04);
+  border: 1px solid var(--overlay-08);
+}
+
+.promo-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.promo-card-image-placeholder {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, rgba(245, 200, 66, 0.15), rgba(255,255,255,0.03));
+}
+
+.promo-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--accent);
+  color: #111;
+  font-weight: 700;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+}
+
+.promo-card-name {
+  margin: 0.6rem 0 0.25rem;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.promo-card-price-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.promo-card-price {
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.promo-card-compare {
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-decoration: line-through;
+}

@@ -6,11 +6,13 @@ import { useState } from 'react';
 import type { ProductItem, CategoryItem } from '@/lib/data/types';
 import { useCart } from '@/lib/components/CartContext';
 import { formatPrice } from '@/lib/utils/currency';
-import { ArrowRight, Search } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Search } from 'lucide-react';
 
 interface ProductsExplorerProps {
   initialProducts: ProductItem[];
   initialCategories: CategoryItem[];
+  lockedTab?: string;
+  onBack?: () => void;
 }
 
 const STORE_TABS = [
@@ -20,8 +22,13 @@ const STORE_TABS = [
   { id: 'goldenboy-merch', label: 'Goldenboy Merch' },
 ];
 
-export default function ProductsExplorer({ initialProducts, initialCategories }: ProductsExplorerProps) {
-  const [selectedTab, setSelectedTab] = useState<string>('all');
+export default function ProductsExplorer({
+  initialProducts,
+  initialCategories,
+  lockedTab,
+  onBack,
+}: ProductsExplorerProps) {
+  const [selectedTab, setSelectedTab] = useState<string>(lockedTab ?? 'all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
@@ -44,18 +51,26 @@ export default function ProductsExplorer({ initialProducts, initialCategories }:
 
   return (
     <>
-      <div className="store-tabs" role="tablist" aria-label="Store sections">
-        {STORE_TABS.map((tab) => (
-          <button
-            key={tab.id}
-            className={`filter-btn ${selectedTab === tab.id ? 'active' : ''}`}
-            onClick={() => setSelectedTab(tab.id)}
-            type="button"
-          >
-            {tab.label}
-          </button>
-        ))}
-      </div>
+      {onBack && (
+        <button type="button" className="back-to-stores" onClick={onBack}>
+          <ArrowLeft className="w-4 h-4" /> Back to stores
+        </button>
+      )}
+
+      {!lockedTab && (
+        <div className="store-tabs" role="tablist" aria-label="Store sections">
+          {STORE_TABS.map((tab) => (
+            <button
+              key={tab.id}
+              className={`filter-btn ${selectedTab === tab.id ? 'active' : ''}`}
+              onClick={() => setSelectedTab(tab.id)}
+              type="button"
+            >
+              {tab.label}
+            </button>
+          ))}
+        </div>
+      )}
 
       <section className="products-controls">
         <div className="search-bar">
