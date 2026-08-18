@@ -33,6 +33,7 @@ export default function ProductsExplorer({
   const [searchTerm, setSearchTerm] = useState('');
   const router = useRouter();
   const { addItem } = useCart();
+  const isKingdome = lockedTab === 'kingdome-apparel';
 
   const handleAdd = (productId: string) => {
     addItem(productId, 1);
@@ -101,55 +102,79 @@ export default function ProductsExplorer({
         </div>
       </section>
 
-      <section className="products-grid">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map((product) => (
-            <div key={product.id} className="product-card">
-              {product.images.length > 0 && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img src={product.images[0]} alt={product.name} className="product-card-image" />
-              )}
-              <div className="product-card-header">
-                {product.stockQuantity === null ? (
-                  <span className="availability-badge">Always in stock</span>
-                ) : product.stockQuantity > 0 ? (
-                  <span className="availability-badge">{product.stockQuantity} in stock</span>
-                ) : (
-                  <span className="availability-badge">Sold out</span>
+      {isKingdome ? (
+        <section className="kingdome-products-grid">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <Link key={product.id} href={`/products/${product.id}`} className="kingdome-product-card">
+                {product.images.length > 0 && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={product.images[0]} alt={product.name} className="kingdome-product-image" />
                 )}
-              </div>
-
-              <h3 className="product-title">{product.name}</h3>
-              <p className="product-description">{product.description}</p>
-
-              <div className="product-meta">
-                <div className="product-price">{formatPrice(product.priceCents, product.currency)}</div>
-                {product.categoryIds.length > 0 && (
-                  <div className="product-category">
-                    {product.categoryIds.map((catId) => categoryMap.get(catId)?.name).filter(Boolean).join(', ')}
-                  </div>
-                )}
-              </div>
-
-              <div className="product-actions">
-                <Link href={`/products/${product.id}`} className="product-link">
-                  View details <ArrowRight className="w-4 h-4" />
-                </Link>
-                <button className="product-btn" onClick={() => handleAdd(product.id)}>
-                  Add to cart
-                </button>
-              </div>
+                <p className="kingdome-product-name">{product.name}</p>
+                <p className="kingdome-product-price">{formatPrice(product.priceCents, product.currency)}</p>
+              </Link>
+            ))
+          ) : (
+            <div className="no-products">
+              <p>No products found matching your search.</p>
+              <Link href="/products" className="button button-secondary">
+                Clear filters
+              </Link>
             </div>
-          ))
-        ) : (
-          <div className="no-products">
-            <p>No products found matching your search.</p>
-            <Link href="/products" className="button button-secondary">
-              Clear filters
-            </Link>
-          </div>
-        )}
-      </section>
+          )}
+        </section>
+      ) : (
+        <section className="products-grid">
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
+              <div key={product.id} className="product-card">
+                {product.images.length > 0 && (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={product.images[0]} alt={product.name} className="product-card-image" />
+                )}
+                <div className="product-card-header">
+                  {product.stockQuantity === null ? (
+                    <span className="availability-badge">Always in stock</span>
+                  ) : product.stockQuantity > 0 ? (
+                    <span className="availability-badge">{product.stockQuantity} in stock</span>
+                  ) : (
+                    <span className="availability-badge">Sold out</span>
+                  )}
+                </div>
+
+                <h3 className="product-title">{product.name}</h3>
+                <p className="product-description">{product.description}</p>
+
+                <div className="product-meta">
+                  <div className="product-price">{formatPrice(product.priceCents, product.currency)}</div>
+                  {product.categoryIds.length > 0 && (
+                    <div className="product-category">
+                      {product.categoryIds.map((catId) => categoryMap.get(catId)?.name).filter(Boolean).join(', ')}
+                    </div>
+                  )}
+                </div>
+
+                <div className="product-actions">
+                  <Link href={`/products/${product.id}`} className="product-link">
+                    View details <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <button className="product-btn" onClick={() => handleAdd(product.id)}>
+                    Add to cart
+                  </button>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="no-products">
+              <p>No products found matching your search.</p>
+              <Link href="/products" className="button button-secondary">
+                Clear filters
+              </Link>
+            </div>
+          )}
+        </section>
+      )}
     </>
   );
 }

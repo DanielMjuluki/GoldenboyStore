@@ -2911,3 +2911,77 @@ a {
   color: #d0d0d0;
   background: rgba(255, 255, 255, 0.06);
 }
+
+/* ─── KINGDOME: SHOP-IN-A-SHOP MODE ─── */
+body.kingdome-active .site-header,
+body.kingdome-active .site-footer {
+  display: none;
+}
+
+.kingdome-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #2a2a2a;
+  margin-bottom: 2rem;
+}
+
+.kingdome-nav a {
+  color: #a0a0a0;
+  text-decoration: none;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+}
+
+.kingdome-nav a:hover {
+  color: #fff;
+}
+
+.kingdome-nav-mark {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+}
+
+/* Strip all rounding inside Kingdome — sharp corners only */
+.kingdome-theme,
+.kingdome-theme * {
+  border-radius: 0 !important;
+}
+
+/* ─── KINGDOME: MINIMAL PRODUCT GRID (browse-only, no buy button) ─── */
+.kingdome-products-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem 1rem;
+}
+
+.kingdome-product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: inherit;
+}
+
+.kingdome-product-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #141414;
+}
+
+.kingdome-product-name {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #fff;
+  letter-spacing: 0.01em;
+}
+
+.kingdome-product-price {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #a0a0a0;
+}

@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import type { ProductItem, CategoryItem } from '@/lib/data/types';
 import ProductsExplorer from '@/lib/components/ProductsExplorer';
 import { Store, Crown, Shirt } from 'lucide-react';
@@ -33,6 +34,23 @@ const STORE_BANNERS = [
 
 export default function ShopExperience({ initialProducts, initialCategories }: ShopExperienceProps) {
   const [activeStore, setActiveStore] = useState<string | null>(null);
+  const isKingdome = activeStore === 'kingdome-apparel';
+
+  useEffect(() => {
+    const previousTitle = document.title;
+
+    if (isKingdome) {
+      document.body.classList.add('kingdome-active');
+      document.title = 'KINGDOME';
+    } else {
+      document.body.classList.remove('kingdome-active');
+    }
+
+    return () => {
+      document.body.classList.remove('kingdome-active');
+      document.title = previousTitle;
+    };
+  }, [isKingdome]);
 
   if (!activeStore) {
     return (
@@ -69,12 +87,22 @@ export default function ShopExperience({ initialProducts, initialCategories }: S
   }
 
   return (
-    <div className={`shop-experience ${activeStore === 'kingdome-apparel' ? 'kingdome-theme' : ''}`}>
+    <div className={`shop-experience ${isKingdome ? 'kingdome-theme' : ''}`}>
+      {isKingdome && (
+        <nav className="kingdome-nav">
+          <Link href="/products" onClick={() => setActiveStore(null)}>
+            Back to stores
+          </Link>
+          <span className="kingdome-nav-mark">KINGDOME</span>
+          <Link href="/cart">Cart</Link>
+        </nav>
+      )}
+
       <ProductsExplorer
         initialProducts={initialProducts}
         initialCategories={initialCategories}
         lockedTab={activeStore}
-        onBack={() => setActiveStore(null)}
+        onBack={isKingdome ? undefined : () => setActiveStore(null)}
       />
     </div>
   );
