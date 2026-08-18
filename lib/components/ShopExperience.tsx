@@ -94,7 +94,6 @@ export default function ShopExperience({ initialProducts, initialCategories }: S
             Back to stores
           </Link>
           <span className="kingdome-nav-mark">KINGDOME</span>
-          <Link href="/cart">Cart</Link>
         </nav>
       )}
 

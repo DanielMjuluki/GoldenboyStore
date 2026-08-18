@@ -2816,8 +2816,6 @@ a {
 /* ─── KINGDOME THEME OVERRIDE ─── */
 .kingdome-theme {
   background: #0a0a0a;
-  padding: 2rem;
-  border-radius: 16px;
 }
 
 .kingdome-theme .products-hero h1,
@@ -2984,4 +2982,12 @@ body.kingdome-active .site-footer {
   margin: 0;
   font-size: 0.9rem;
   color: #a0a0a0;
+}
+
+.kingdome-theme .search-bar {
+  border: none;
+}
+
+.kingdome-theme .category-select {
+  font-size: 0.85rem;
 }
