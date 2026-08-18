@@ -69,7 +69,7 @@ export default function ShopExperience({ initialProducts, initialCategories }: S
   }
 
   return (
-    <div className="shop-experience">
+    <div className={`shop-experience ${activeStore === 'kingdome-apparel' ? 'kingdome-theme' : ''}`}>
       <ProductsExplorer
         initialProducts={initialProducts}
         initialCategories={initialCategories}

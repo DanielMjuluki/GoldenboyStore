@@ -2812,3 +2812,102 @@ a {
   color: var(--muted);
   text-decoration: line-through;
 }
+
+/* ─── KINGDOME THEME OVERRIDE ─── */
+.kingdome-theme {
+  background: #0a0a0a;
+  padding: 2rem;
+  border-radius: 16px;
+}
+
+.kingdome-theme .products-hero h1,
+.kingdome-theme .products-hero p,
+.kingdome-theme .eyebrow {
+  color: #fff;
+}
+
+.kingdome-theme .back-to-stores {
+  color: #a0a0a0;
+}
+
+.kingdome-theme .back-to-stores:hover {
+  color: #fff;
+}
+
+.kingdome-theme .filter-btn {
+  border-color: #333;
+  color: #a0a0a0;
+}
+
+.kingdome-theme .filter-btn.active {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #fff;
+  color: #fff;
+}
+
+.kingdome-theme .search-bar,
+.kingdome-theme .category-select {
+  background: #141414;
+  border-color: #333;
+  color: #fff;
+}
+
+.kingdome-theme .search-input {
+  background: transparent;
+  color: #fff;
+}
+
+.kingdome-theme .product-card {
+  background: #141414;
+  border-color: #2a2a2a;
+}
+
+.kingdome-theme .product-card:hover {
+  background: #1a1a1a;
+  border-color: #555;
+  box-shadow: 0 24px 48px rgba(255, 255, 255, 0.06);
+}
+
+.kingdome-theme .product-title {
+  color: #fff;
+}
+
+.kingdome-theme .product-description {
+  color: #a0a0a0;
+}
+
+.kingdome-theme .product-price {
+  color: #fff;
+}
+
+.kingdome-theme .product-meta {
+  border-top-color: #2a2a2a;
+}
+
+.kingdome-theme .product-category {
+  color: #808080;
+}
+
+.kingdome-theme .product-link {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: #444;
+  color: #fff;
+}
+
+.kingdome-theme .product-link:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.kingdome-theme .product-btn {
+  background: #fff;
+  color: #0a0a0a;
+}
+
+.kingdome-theme .product-btn:hover {
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+}
+
+.kingdome-theme .availability-badge {
+  color: #d0d0d0;
+  background: rgba(255, 255, 255, 0.06);
+}
