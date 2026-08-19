@@ -25,14 +25,14 @@ const STORE_BANNERS = [
     name: 'Goldenboy Merch',
     tagline: 'Official creator merchandise',
     icon: Shirt,
-    image: null,
+    image: '/images/banners/goldenboy-merch-banner.jpg',
   },
   {
     id: 'general-store',
     name: 'Golden General Store',
     tagline: 'Everyday goods and general items',
     icon: Store,
-    image: null,
+    image: '/images/banners/general-store-banner.jpg',
   },
 ];
 
