@@ -17,18 +17,21 @@ const STORE_BANNERS = [
     name: 'Kingdome Fashion Apparel',
     tagline: 'Streetwear for the kingdom',
     icon: Crown,
+    image: '/images/banners/kingdome-banner.png',
   },
   {
     id: 'goldenboy-merch',
     name: 'Goldenboy Merch',
     tagline: 'Official creator merchandise',
     icon: Shirt,
+    image: null,
   },
   {
     id: 'general-store',
     name: 'Golden General Store',
     tagline: 'Everyday goods and general items',
     icon: Store,
+    image: null,
   },
 ];
 
@@ -72,12 +75,15 @@ export default function ShopExperience({ initialProducts, initialCategories }: S
               <button
                 key={store.id}
                 type="button"
-                className={`store-banner store-banner-${store.id}`}
+                className={`store-banner store-banner-${store.id} ${store.image ? 'store-banner-has-image' : ''}`}
                 onClick={() => setActiveStore(store.id)}
+                style={store.image ? { backgroundImage: `url(${store.image})` } : undefined}
               >
-                <Icon className="w-8 h-8" />
-                <h2>{store.name}</h2>
-                <p>{store.tagline}</p>
+                {!store.image && <Icon className="w-8 h-8" />}
+                <div className="store-banner-text">
+                  <h2>{store.name}</h2>
+                  <p>{store.tagline}</p>
+                </div>
               </button>
             );
           })}

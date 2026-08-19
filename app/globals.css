@@ -2815,7 +2815,7 @@ a {
 
 /* ─── KINGDOME THEME OVERRIDE (off-white, black text) ─── */
 .kingdome-theme {
-  background: #f5f2ea;
+  background: #d4d3d1;
 }
 
 .kingdome-theme .products-hero h1,
@@ -2845,7 +2845,7 @@ a {
 
 .kingdome-theme .search-bar,
 .kingdome-theme .category-select {
-  background: #ece7db;
+  background: #d4d3d1;
   border-color: #ccc;
   color: #0a0a0a;
 }
@@ -2913,7 +2913,7 @@ a {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  background: #ece7db;
+  background: #d4d3d1;
 }
 
 .kingdome-product-name {
@@ -2932,10 +2932,36 @@ a {
 }
 
 body.kingdome-active {
-  background: #f5f2ea;
+  background: #d4d3d1;
 }
 
 body.kingdome-active .site-header,
 body.kingdome-active .site-footer {
   display: none;
+}
+
+.store-banner-has-image {
+  background-size: cover;
+  background-position: center;
+  min-height: 280px;
+  position: relative;
+  justify-content: flex-end;
+  color: #fff;
+}
+
+.store-banner-has-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0) 60%);
+}
+
+.store-banner-has-image .store-banner-text {
+  position: relative;
+  z-index: 1;
+}
+
+.store-banner-has-image h2,
+.store-banner-has-image p {
+  color: #fff;
 }
