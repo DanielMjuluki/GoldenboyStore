@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { Trash2, Pencil, X } from 'lucide-react';
 import type { CategoryItem, ProductItem } from '@/lib/data/types';
 import { formatPrice } from '@/lib/utils/currency';
+import ImagePicker from '@/lib/components/ImagePicker';
 
 const ADMIN_KEY_STORAGE = 'goldenboy_admin_key';
 
@@ -18,6 +19,7 @@ const emptyForm = {
   imageUrl3: '',
   sizes: '',
   colors: '',
+  compareAtPrice: '',
   stockQuantity: null as number | null,
   status: 'active' as ProductItem['status'],
 };
@@ -148,6 +150,7 @@ export default function AdminProductsPage() {
       imageUrl3: product.images[2] ?? '',
       sizes: (product.sizes ?? []).join(', '),
       colors: (product.colors ?? []).join(', '),
+      compareAtPrice: product.compareAtPriceCents ? String(product.compareAtPriceCents / 100) : '',
       stockQuantity: product.stockQuantity,
       status: product.status,
     });
@@ -166,12 +169,13 @@ export default function AdminProductsPage() {
     setLoading(true);
     setMessage('');
 
-    const { imageUrl1, imageUrl2, imageUrl3, sizes, colors, ...rest } = formData;
+    const { imageUrl1, imageUrl2, imageUrl3, sizes, colors, compareAtPrice, ...rest } = formData;
     const body = {
       ...rest,
       images: [imageUrl1, imageUrl2, imageUrl3].map((s) => s.trim()).filter(Boolean),
       sizes: sizes.split(',').map((s) => s.trim()).filter(Boolean),
       colors: colors.split(',').map((s) => s.trim()).filter(Boolean),
+      compareAtPriceCents: compareAtPrice.trim() ? Math.round(Number(compareAtPrice) * 100) : null,
     };
 
     try {
@@ -368,41 +372,29 @@ export default function AdminProductsPage() {
             </div>
           </div>
 
-          <div className="form-field">
-            <label>Image URL 1 (optional)</label>
-            <input
-              type="url"
-              name="imageUrl1"
-              value={formData.imageUrl1}
-              onChange={handleInputChange}
-              placeholder="https://example.com/mockup-1.jpg"
-            />
-          </div>
+          <ImagePicker
+            adminKey={adminKey ?? ''}
+            value={formData.imageUrl1}
+            onChange={(path) => setFormData({ ...formData, imageUrl1: path })}
+            label="Image 1 (optional)"
+          />
 
-          <div className="form-field">
-            <label>Image URL 2 (optional)</label>
-            <input
-              type="url"
-              name="imageUrl2"
-              value={formData.imageUrl2}
-              onChange={handleInputChange}
-              placeholder="https://example.com/mockup-2.jpg"
-            />
-          </div>
+          <ImagePicker
+            adminKey={adminKey ?? ''}
+            value={formData.imageUrl2}
+            onChange={(path) => setFormData({ ...formData, imageUrl2: path })}
+            label="Image 2 (optional)"
+          />
 
-          <div className="form-field">
-            <label>Image URL 3 (optional)</label>
-            <input
-              type="url"
-              name="imageUrl3"
-              value={formData.imageUrl3}
-              onChange={handleInputChange}
-              placeholder="https://example.com/mockup-3.jpg"
-            />
-            <p className="field-hint">
-              Up to 3 mockup images per product. Paste links to images hosted elsewhere (e.g. GitHub, Imgur).
-            </p>
-          </div>
+          <ImagePicker
+            adminKey={adminKey ?? ''}
+            value={formData.imageUrl3}
+            onChange={(path) => setFormData({ ...formData, imageUrl3: path })}
+            label="Image 3 (optional)"
+          />
+          <p className="field-hint">
+            Up to 3 mockup images per product. Paste a URL, or browse images already in the repo.
+          </p>
 
           <div className="form-field">
             <label>Sizes (optional, comma-separated)</label>
@@ -426,6 +418,21 @@ export default function AdminProductsPage() {
             />
             <p className="field-hint">
               Leave blank if this product has no size/colour options. Adding more colours later is just editing this field.
+            </p>
+          </div>
+
+          <div className="form-field">
+            <label>Compare-at price (optional, ZAR — the crossed-out original price)</label>
+            <input
+              type="number"
+              step="0.01"
+              name="compareAtPrice"
+              value={formData.compareAtPrice}
+              onChange={handleInputChange}
+              placeholder="e.g. 350 if the sale price is 250"
+            />
+            <p className="field-hint">
+              Leave blank for no discount badge. Must be higher than the actual price to show a strikethrough.
             </p>
           </div>
 

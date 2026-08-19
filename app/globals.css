@@ -2965,3 +2965,54 @@ body.kingdome-active .site-footer {
 .store-banner-has-image p {
   color: #fff;
 }
+
+/* ─── ADMIN: IMAGE PICKER ─── */
+.image-picker-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.image-picker-row input {
+  flex: 1;
+}
+
+.image-picker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  padding: 1rem;
+  background: var(--overlay-02);
+  border-radius: 12px;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.image-picker-thumb {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 0.4rem;
+  background: none;
+  cursor: pointer;
+}
+
+.image-picker-thumb img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.image-picker-thumb span {
+  font-size: 0.7rem;
+  color: var(--muted);
+  word-break: break-all;
+}
+
+.image-picker-thumb.selected {
+  border-color: var(--accent);
+}
