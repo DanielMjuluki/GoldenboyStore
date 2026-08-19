@@ -2912,7 +2912,7 @@ a {
 .kingdome-product-image {
   width: 100%;
   aspect-ratio: 1 / 1;
-  object-fit: cover;
+  object-fit: contain;
   background: #d4d3d1;
 }
 

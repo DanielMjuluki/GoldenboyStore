@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { Suspense } from 'react';
 import { dataStore } from '@/lib/data';
 import ShopExperience from '@/lib/components/ShopExperience';
 
@@ -34,7 +35,9 @@ export default async function ProductsPage() {
           We couldn&apos;t load the catalog right now. Please refresh, or check back shortly.
         </div>
       ) : (
-        <ShopExperience initialProducts={products} initialCategories={categories} />
+        <Suspense fallback={<div className="products-loading">Loading store…</div>}>
+            <ShopExperience initialProducts={products} initialCategories={categories} />
+          </Suspense>
       )}
     </main>
   );

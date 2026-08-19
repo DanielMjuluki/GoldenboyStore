@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import type { ProductItem, CategoryItem } from '@/lib/data/types';
 import ProductsExplorer from '@/lib/components/ProductsExplorer';
@@ -36,8 +37,21 @@ const STORE_BANNERS = [
 ];
 
 export default function ShopExperience({ initialProducts, initialCategories }: ShopExperienceProps) {
-  const [activeStore, setActiveStore] = useState<string | null>(null);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const storeFromUrl = searchParams.get('store');
+  const [activeStore, setActiveStoreState] = useState<string | null>(storeFromUrl);
   const isKingdome = activeStore === 'kingdome-apparel';
+
+  const setActiveStore = (storeId: string | null) => {
+    setActiveStoreState(storeId);
+    if (storeId) {
+      router.push(`/products?store=${storeId}`, { scroll: false });
+    } else {
+      router.push('/products', { scroll: false });
+    }
+  };
+
 
   useEffect(() => {
     const previousTitle = document.title;
