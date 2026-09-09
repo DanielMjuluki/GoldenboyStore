@@ -18,7 +18,7 @@ const themeInitScript = `
 
 const SOCIAL_LINKS = [
   { platform: 'youtube', label: 'YouTube', href: 'https://www.youtube.com/@goldenboy_mj', icon: '/icons/youtube.svg' },
-  { platform: 'tiktok', label: 'TikTok', href: 'https://www.tiktok.com/@goldenboy_za', icon: '/icons/tiktok.svg' },
+  { platform: 'tiktok', label: 'TikTok', href: 'https://www.tiktok.com/@goldenboy_mj', icon: '/icons/tiktok.svg' },
   { platform: 'facebook', label: 'Facebook', href: 'https://www.facebook.com/goldenboy.creates.za', icon: '/icons/facebook.svg' },
   { platform: 'kick', label: 'Kick', href: 'https://kick.com/Goldenboy_Mj', icon: '/icons/kick.svg' },
 ];
