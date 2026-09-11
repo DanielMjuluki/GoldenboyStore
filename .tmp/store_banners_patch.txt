@@ -1,0 +1,23 @@
+const STORE_BANNERS = [
+  {
+    id: 'kingdome-apparel',
+    name: 'Kingdome Fashion Apparel',
+    tagline: 'Streetwear for the kingdom',
+    icon: Crown,
+    image: '/images/banners/kingdome-banner.png',
+  },
+  {
+    id: 'goldenboy-merch',
+    name: 'Goldenboy Merch',
+    tagline: 'Official creator merchandise',
+    icon: Shirt,
+    image: null,
+  },
+  {
+    id: 'general-store',
+    name: 'Golden General Store',
+    tagline: 'Everyday goods and general items',
+    icon: Store,
+    image: null,
+  },
+];

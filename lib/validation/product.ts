@@ -15,6 +15,7 @@ export const productPayloadSchema = z.object({
   images: z.array(z.string().trim().min(1)).default([]),
   sizes: z.array(z.string().trim().min(1)).default([]),
   colors: z.array(z.string().trim().min(1)).default([]),
+  compareAtPriceCents: z.number().int().nonnegative().nullable().default(null),
   stockQuantity: z.number().int().nonnegative().nullable().default(null),
   status: productStatusSchema.default('active'),
 });

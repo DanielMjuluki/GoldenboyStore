@@ -44,6 +44,7 @@ function parseProduct(row: Record<string, string>): ProductItem {
       ? row.colors.split(',').map((value) => value.trim()).filter(Boolean)
       : [],
     stockQuantity: row.stock_quantity === '' ? null : Number(row.stock_quantity),
+    compareAtPriceCents: row.compare_at_price_cents ? Number(row.compare_at_price_cents) : undefined,
     status: (row.status as ProductItem['status']) || 'active',
   };
 }
@@ -233,7 +234,7 @@ export class GoogleSheetsDataStore implements DataStore {
   }
 
   async getAllProducts(): Promise<ProductItem[]> {
-    const rows = await this.readRows(`${PRODUCTS_SHEET_NAME}!A:K`);
+    const rows = await this.readRows(`${PRODUCTS_SHEET_NAME}!A:L`);
     if (rows.length === 0) return [];
     return parseSheetRows(rows)
       .map(parseProduct)
@@ -253,6 +254,7 @@ export class GoogleSheetsDataStore implements DataStore {
       product.status,
       (product.sizes ?? []).join(','),
       (product.colors ?? []).join(','),
+      product.compareAtPriceCents ? String(product.compareAtPriceCents) : '',
     ];
   }
 
@@ -261,7 +263,7 @@ export class GoogleSheetsDataStore implements DataStore {
    * `id` column. Returns null if the product/sheet is not found.
    */
   private async findProductRowNumber(productId: string): Promise<number | null> {
-    const rows = await this.readRows(`${PRODUCTS_SHEET_NAME}!A:K`);
+    const rows = await this.readRows(`${PRODUCTS_SHEET_NAME}!A:L`);
     if (rows.length === 0) return null;
 
     const headers = normalizeHeaders(rows[0]);
@@ -312,7 +314,7 @@ export class GoogleSheetsDataStore implements DataStore {
     const sheets = await this.getSheetsClient();
     await sheets.spreadsheets.values.append({
       spreadsheetId: this.sheetId,
-      range: `${PRODUCTS_SHEET_NAME}!A:K`,
+      range: `${PRODUCTS_SHEET_NAME}!A:L`,
       valueInputOption: 'RAW',
       requestBody: {
         values: [this.productToRow(product)],
@@ -336,7 +338,7 @@ export class GoogleSheetsDataStore implements DataStore {
     const sheets = await this.getSheetsClient();
     await sheets.spreadsheets.values.update({
       spreadsheetId: this.sheetId,
-      range: `${PRODUCTS_SHEET_NAME}!A${rowNumber}:K${rowNumber}`,
+      range: `${PRODUCTS_SHEET_NAME}!A${rowNumber}:L${rowNumber}`,
       valueInputOption: 'RAW',
       requestBody: {
         values: [this.productToRow(updated)],

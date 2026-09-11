@@ -42,7 +42,7 @@ async function fetchYouTubeStats(): Promise<SocialStats> {
   try {
     const res = await fetch(
       `https://www.googleapis.com/youtube/v3/channels?part=statistics&forHandle=goldenboy_mj&key=${apiKey}`,
-      { next: { revalidate: 300 } }
+      { next: { revalidate: 3600 } }
     );
     const json = await res.json();
     const stats = json.items?.[0]?.statistics;
@@ -188,7 +188,7 @@ export async function GET(request: NextRequest) {
         lastSynced: new Date().toISOString(),
       },
       {
-        headers: { 'Cache-Control': 'public, max-age=300, stale-while-revalidate=600' },
+        headers: { 'Cache-Control': 'public, max-age=3600, stale-while-revalidate=7200' },
       }
     );
   } catch (error) {

@@ -1,0 +1,20 @@
+        <section className="store-banner-grid">
+          {STORE_BANNERS.map((store) => {
+            const Icon = store.icon;
+            return (
+              <button
+                key={store.id}
+                type="button"
+                className={`store-banner store-banner-${store.id} ${store.image ? 'store-banner-has-image' : ''}`}
+                onClick={() => setActiveStore(store.id)}
+                style={store.image ? { backgroundImage: `url(${store.image})` } : undefined}
+              >
+                {!store.image && <Icon className="w-8 h-8" />}
+                <div className="store-banner-text">
+                  <h2>{store.name}</h2>
+                  <p>{store.tagline}</p>
+                </div>
+              </button>
+            );
+          })}
+        </section>

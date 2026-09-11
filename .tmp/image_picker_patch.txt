@@ -1,0 +1,23 @@
+          <ImagePicker
+            adminKey={adminKey ?? ''}
+            value={formData.imageUrl1}
+            onChange={(path) => setFormData({ ...formData, imageUrl1: path })}
+            label="Image 1 (optional)"
+          />
+
+          <ImagePicker
+            adminKey={adminKey ?? ''}
+            value={formData.imageUrl2}
+            onChange={(path) => setFormData({ ...formData, imageUrl2: path })}
+            label="Image 2 (optional)"
+          />
+
+          <ImagePicker
+            adminKey={adminKey ?? ''}
+            value={formData.imageUrl3}
+            onChange={(path) => setFormData({ ...formData, imageUrl3: path })}
+            label="Image 3 (optional)"
+          />
+          <p className="field-hint">
+            Up to 3 mockup images per product. Paste a URL, or browse images already in the repo.
+          </p>
