@@ -3,10 +3,45 @@ import { Suspense } from 'react';
 import { dataStore } from '@/lib/data';
 import ShopExperience from '@/lib/components/ShopExperience';
 
-export const metadata: Metadata = {
-  title: 'Shop',
-  description: 'Browse the full Goldenboy marketplace — content creation, strategy, and merch launch services.',
+const STORE_SEO: Record<string, { title: string; description: string }> = {
+  'kingdome-apparel': {
+    title: 'Kingdome Fashion Apparel — Streetwear',
+    description:
+      'Shop Kingdome streetwear — t-shirts, hoodies, and sweatpants built for everyday wear. Official Kingdome apparel, South Africa.',
+  },
+  'goldenboy-merch': {
+    title: 'Goldenboy Merch — Official Creator Merchandise',
+    description:
+      'Official Goldenboy merchandise. Shop apparel and creator-branded gear straight from the source.',
+  },
+  'general-store': {
+    title: 'Golden General Store — Electronics, Homeware & More',
+    description:
+      'Everyday goods from Golden General Store — electronics, homeware, and general items, all in one place.',
+  },
 };
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: { store?: string };
+}): Promise<Metadata> {
+  const store = searchParams.store;
+  const seo = store ? STORE_SEO[store] : undefined;
+
+  if (seo) {
+    return {
+      title: seo.title,
+      description: seo.description,
+    };
+  }
+
+  return {
+    title: 'Shop',
+    description:
+      'Shop Kingdome streetwear apparel, official Goldenboy merch, and everyday goods from the Golden General Store — all in one marketplace.',
+  };
+}
 
 // Revalidate the product list periodically instead of on every request.
 // Product data doesn't change second-to-second, so this avoids re-hitting
