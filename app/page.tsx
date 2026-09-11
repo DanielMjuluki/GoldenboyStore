@@ -5,19 +5,11 @@ import { useEffect, useState } from 'react';
 import { ArrowRight, Loader, Code2, Palette } from 'lucide-react';
 import type { BrandStats } from '@/lib/data/types';
 import PromoCarousel from '@/lib/components/PromoCarousel';
-import WebDevInquiryForm from '@/lib/components/WebDevInquiryForm';
 
 // Swap this for your actual latest-upload video ID once you have it —
 // this is just a working placeholder so the player is guaranteed to load.
 // Find your video ID in its YouTube URL: youtube.com/watch?v=THIS_PART
 const FEATURED_VIDEO_ID = 'o3x070e09dM';
-
-const WEB_DEV_TIERS = [
-  { name: 'Starter Page', price: 'R1,500 u2013 R2,500', desc: 'Single page, digital business card style. Perfect for a quick professional presence.' },
-  { name: 'Business Website', price: 'R5,000 u2013 R12,000', desc: '3u20136 pages, contact form, mobile responsive. The right fit for most small businesses.' },
-  { name: 'E-commerce Website', price: 'R10,000 u2013 R25,000', desc: 'Product catalogue, payment gateway, shopping cart u2014 start selling online.' },
-  { name: 'Custom / Advanced', price: 'R25,000+', desc: 'Bookings, portals, custom integrations, dashboards u2014 built around what you need.' },
-];
 
 const featuredServices = [
   {
@@ -179,28 +171,19 @@ export default function HomePage() {
       </section>
 
       <section className="section-block">
-        <div className="section-heading">
+        <div className="webdev-teaser">
           <div>
-            <p className="eyebrow">Storefront</p>
-            <h2>Products, services, and launches in one place</h2>
+            <p className="eyebrow">Web &amp; Branding</p>
+            <h2>Websites and business branding, built to fit your budget</h2>
+            <p className="intro-copy">
+              From a single-page starter site to a full online store — see pricing tiers and
+              get a quote for your specific project.
+            </p>
           </div>
-        </div>
-
-        <div className="preview-grid">
-          <div className="catalog-card">
-            <h3>Shop</h3>
-            <p>Physical drops, digital resources, and creator-focused tools ready to buy.</p>
-            <Link href="/products" className="text-link">
-              Browse products
-            </Link>
-          </div>
-          <div className="catalog-card">
-            <h3>Projects</h3>
-            <p>A portfolio-style view of the work, services, and brand builds behind the GoldenStore ecosystem.</p>
-            <Link href="/projects" className="text-link">
-              Explore projects
-            </Link>
-          </div>
+          <Link href="/services" className="button button-primary">
+            See pricing &amp; get a quote
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </Link>
         </div>
       </section>
     </main>

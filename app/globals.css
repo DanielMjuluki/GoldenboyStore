@@ -3104,3 +3104,108 @@ body.kingdome-active .site-footer {
 .webdev-inquiry-wrapper h3 {
   margin: 0 0 1rem;
 }
+
+/* ── Homepage web/branding teaser (replaces the old inline tiers+form) ── */
+.webdev-teaser {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 2rem;
+  border-radius: 22px;
+  background: var(--overlay-04);
+  border: 1px solid var(--overlay-08);
+}
+
+.webdev-teaser h2 {
+  margin: 0.3rem 0 0.6rem;
+}
+
+.webdev-teaser .intro-copy {
+  margin: 0;
+  max-width: 34rem;
+}
+
+/* ── Clickable pricing tier cards on the Services page ── */
+.pricing-tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.pricing-tier-card {
+  text-align: left;
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: var(--overlay-04);
+  border: 1px solid var(--overlay-08);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  transition: border-color 0.15s ease, transform 0.15s ease, background 0.15s ease;
+  font-family: inherit;
+  color: inherit;
+}
+
+.pricing-tier-card:hover {
+  border-color: rgba(245, 200, 66, 0.4);
+  transform: translateY(-2px);
+}
+
+.pricing-tier-active {
+  border-color: var(--accent);
+  background: rgba(245, 200, 66, 0.1);
+}
+
+.pricing-tier-card h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.pricing-tier-price {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.pricing-tier-desc {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin: 0;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.pricing-tier-cta {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-top: 0.4rem;
+}
+
+@media (max-width: 640px) {
+  .webdev-teaser {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 1.25rem;
+    text-align: left;
+  }
+
+  .webdev-teaser .button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .pricing-tiers-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.7rem;
+  }
+
+  .pricing-tier-card {
+    padding: 1rem;
+  }
+}

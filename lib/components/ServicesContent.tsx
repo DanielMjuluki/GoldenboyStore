@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Code2, MessageCircleMore, Palette, Send } from 'lucide-react';
 
 const services = [
@@ -18,16 +18,52 @@ const services = [
   },
 ];
 
+const PRICING_TIERS = [
+  {
+    name: 'Starter Page',
+    price: 'R1,500 – R2,500',
+    desc: 'Single page, digital business card style. Perfect for a quick professional presence.',
+  },
+  {
+    name: 'Business Website',
+    price: 'R5,000 – R12,000',
+    desc: '3–6 pages, contact form, mobile responsive. The right fit for most small businesses.',
+  },
+  {
+    name: 'E-commerce Website',
+    price: 'R12,000 – R30,000',
+    desc: 'Product catalogue, payment gateway (PayFast), shopping cart, order emails — start selling online.',
+  },
+  {
+    name: 'Custom / Advanced',
+    price: 'R25,000+',
+    desc: 'Bookings, client portals, custom integrations, dashboards — built around exactly what you need.',
+  },
+];
+
+const PROJECT_TYPES = [
+  'Not sure yet — help me decide',
+  'Business Branding and Printing',
+  ...PRICING_TIERS.map((t) => `${t.name} (${t.price})`),
+];
+
 const WHATSAPP_NUMBER = '27678208752';
 const CONTACT_EMAIL = 'goldenboimj@gmail.com';
 
 export default function ServicesContent() {
-  const [formState, setFormState] = useState({ name: '', contact: '', message: '' });
+  const [formState, setFormState] = useState({ name: '', contact: '', message: '', projectType: PROJECT_TYPES[0] });
+  const formRef = useRef<HTMLDivElement>(null);
+
+  const selectTier = (label: string) => {
+    setFormState((prev) => ({ ...prev, projectType: label }));
+    formRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const buildMessage = () =>
     [
       `Name: ${formState.name || 'Not provided'}`,
       `Contact: ${formState.contact || 'Not provided'}`,
+      `Looking for: ${formState.projectType}`,
       '',
       formState.message || 'No message provided.',
     ].join('\n');
@@ -36,7 +72,7 @@ export default function ServicesContent() {
     event.preventDefault();
     const body = buildMessage();
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-      'Service inquiry from GoldenStore'
+      `Service inquiry — ${formState.projectType}`
     )}&body=${encodeURIComponent(body)}`;
   };
 
@@ -53,7 +89,7 @@ export default function ServicesContent() {
           <p className="eyebrow">Services</p>
           <h1>Services built for creators and growing businesses.</h1>
           <p className="intro-copy">
-            Two focused offers, done properly. Get in touch below and I&rsquo;ll get back to you by email or WhatsApp.
+            Get in touch below and I&rsquo;ll get back to you by email or WhatsApp.
           </p>
         </div>
       </section>
@@ -81,6 +117,38 @@ export default function ServicesContent() {
       </section>
 
       <section className="section-block">
+        <div className="section-heading">
+          <div>
+            <p className="eyebrow">Web &amp; Branding pricing</p>
+            <h2>Pick a tier to get started</h2>
+            <p className="intro-copy">
+              Tap a package below — it'll pre-fill the form so you don't have to type it out.
+            </p>
+          </div>
+        </div>
+
+        <div className="pricing-tiers-grid">
+          {PRICING_TIERS.map((tier) => {
+            const label = `${tier.name} (${tier.price})`;
+            const active = formState.projectType === label;
+            return (
+              <button
+                key={tier.name}
+                type="button"
+                className={`pricing-tier-card ${active ? 'pricing-tier-active' : ''}`}
+                onClick={() => selectTier(label)}
+              >
+                <h3>{tier.name}</h3>
+                <p className="pricing-tier-price">{tier.price}</p>
+                <p className="pricing-tier-desc">{tier.desc}</p>
+                <span className="pricing-tier-cta">Get this quote →</span>
+              </button>
+            );
+          })}
+        </div>
+      </section>
+
+      <section className="section-block" ref={formRef} id="inquiry-form">
         <div className="catalog-card service-panel">
           <div className="service-header">
             <div className="feature-icon">
@@ -114,12 +182,24 @@ export default function ServicesContent() {
             </label>
 
             <label>
+              <span>What are you looking for?</span>
+              <select
+                value={formState.projectType}
+                onChange={(event) => setFormState({ ...formState, projectType: event.target.value })}
+              >
+                {PROJECT_TYPES.map((type) => (
+                  <option key={type} value={type}>{type}</option>
+                ))}
+              </select>
+            </label>
+
+            <label>
               <span>Message</span>
               <textarea
                 rows={5}
                 value={formState.message}
                 onChange={(event) => setFormState({ ...formState, message: event.target.value })}
-                placeholder="Tell me a bit about what you need."
+                placeholder="Tell me a bit about what you need, and any deadline or budget in mind."
               />
             </label>
 
