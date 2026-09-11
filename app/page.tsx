@@ -102,30 +102,19 @@ export default function HomePage() {
       <PromoCarousel />
 
       <section className="section-block">
-        <div className="section-heading">
+        <div className="webdev-teaser">
           <div>
             <p className="eyebrow">Web &amp; Branding</p>
             <h2>Websites and business branding, built to fit your budget</h2>
             <p className="intro-copy">
-              Pick the tier closest to what you need &mdash; exact pricing depends on your
-              specific project, but this gives you a realistic starting point.
+              From a single-page starter site to a full online store — see pricing tiers and
+              get a quote for your specific project.
             </p>
           </div>
-        </div>
-
-        <div className="webdev-tiers-grid">
-          {WEB_DEV_TIERS.map((tier) => (
-            <div key={tier.name} className="webdev-tier-card">
-              <h3>{tier.name}</h3>
-              <p className="webdev-tier-price">{tier.price}</p>
-              <p className="webdev-tier-desc">{tier.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="webdev-inquiry-wrapper">
-          <h3>Ready to start? Tell me about your project</h3>
-          <WebDevInquiryForm />
+          <Link href="/services" className="button button-primary">
+            See pricing &amp; get a quote
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </Link>
         </div>
       </section>
 
@@ -171,19 +160,28 @@ export default function HomePage() {
       </section>
 
       <section className="section-block">
-        <div className="webdev-teaser">
+        <div className="section-heading">
           <div>
-            <p className="eyebrow">Web &amp; Branding</p>
-            <h2>Websites and business branding, built to fit your budget</h2>
-            <p className="intro-copy">
-              From a single-page starter site to a full online store — see pricing tiers and
-              get a quote for your specific project.
-            </p>
+            <p className="eyebrow">Storefront</p>
+            <h2>Products, services, and launches in one place</h2>
           </div>
-          <Link href="/services" className="button button-primary">
-            See pricing &amp; get a quote
-            <ArrowRight className="w-4 h-4 ml-2" />
-          </Link>
+        </div>
+
+        <div className="preview-grid">
+          <div className="catalog-card">
+            <h3>Shop</h3>
+            <p>Physical drops, digital resources, and creator-focused tools ready to buy.</p>
+            <Link href="/products" className="text-link">
+              Browse products
+            </Link>
+          </div>
+          <div className="catalog-card">
+            <h3>Projects</h3>
+            <p>A portfolio-style view of the work, services, and brand builds behind the GoldenStore ecosystem.</p>
+            <Link href="/projects" className="text-link">
+              Explore projects
+            </Link>
+          </div>
         </div>
       </section>
     </main>
