@@ -52,7 +52,7 @@ const CONTACT_EMAIL = 'goldenboimj@gmail.com';
 
 export default function ServicesContent() {
   const [formState, setFormState] = useState({ name: '', contact: '', message: '', projectType: PROJECT_TYPES[0] });
-  const formRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLElement>(null);
 
   const selectTier = (label: string) => {
     setFormState((prev) => ({ ...prev, projectType: label }));
