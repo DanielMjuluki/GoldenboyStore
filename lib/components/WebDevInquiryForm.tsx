@@ -8,7 +8,7 @@ const WHATSAPP_NUMBER = '27678208752';
 const PROJECT_TYPES = [
   'Starter Page (R1,500 – R2,500)',
   'Business Website (R5,000 – R12,000)',
-  'E-commerce Website (R10,000 – R25,000)',
+  'E-commerce Website (R12,000 – R30,000)',
   'Custom / Advanced Project (R25,000+)',
   'Business Branding & Printing',
   'Not sure yet — help me decide',
