@@ -19,6 +19,7 @@
     "zod": "^3.23.0"
   },
   "devDependencies": {
+    "@next/swc-wasm-nodejs": "^16.3.5",
     "@types/node": "^20.14.0",
     "@types/nodemailer": "^8.0.1",
     "@types/react": "^18.3.4",
