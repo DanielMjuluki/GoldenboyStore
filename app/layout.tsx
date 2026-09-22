@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { CartProvider } from '@/lib/components/CartContext';
 import { ThemeToggle } from '@/lib/components/ThemeToggle';
+import { HeaderNav } from '@/lib/components/HeaderNav';
 
 // Runs before hydration so the page never flashes the wrong theme on load.
 const themeInitScript = `
@@ -56,11 +57,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <Link href="/">GoldenStore</Link>
             </div>
             <nav className="site-nav">
-              <Link href="/projects">Projects</Link>
-              <Link href="/services">Services</Link>
-              <Link href="/products">Shop</Link>
-              <Link href="/donate">Donate</Link>
-              <Link href="/cart">Cart</Link>
               <div className="header-social">
                 {SOCIAL_LINKS.map((s) => (
                   <a key={s.platform} href={s.href} target="_blank" rel="noreferrer" aria-label={s.label}>
@@ -69,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 ))}
               </div>
               <ThemeToggle />
+              <HeaderNav />
             </nav>
           </div>
         </header>
