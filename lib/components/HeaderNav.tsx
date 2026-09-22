@@ -77,7 +77,7 @@ export function HeaderNav() {
           border: 1px solid var(--border);
           border-radius: 10px;
           padding: 8px;
-          box-shadow: 0 12px 30px color-mix(in srgb, var(--text) 25%, transparent);
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
           z-index: 60;
         }
         .hn-dropdown a {
@@ -89,10 +89,7 @@ export function HeaderNav() {
           font-size: 14.5px;
         }
         .hn-dropdown a:hover {
-          background: color-mix(in srgb, var(--text) 10%, transparent);
-        }
-        .hn-dropdown a:active {
-          background: color-mix(in srgb, var(--text) 16%, transparent);
+          background: var(--overlay-06);
         }
       `}</style>
 
