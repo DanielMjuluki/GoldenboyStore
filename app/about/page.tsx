@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { ImageSlider } from "@/lib/components/ImageSlider";
 
 export const metadata: Metadata = {
   title: "About | GoldenStore",
@@ -25,16 +25,26 @@ export default function AboutPage() {
           margin-bottom: 16px;
         }
         .ab-hero {
-          display: grid;
-          grid-template-columns: 1fr 1.15fr;
-          gap: 64px;
-          align-items: center;
           margin-bottom: 90px;
+        }
+        .ab-hero-text {
+          max-width: 640px;
+          margin: 36px auto 0;
+          text-align: center;
+        }
+        .ab-hero-text .ab-eyebrow,
+        .ab-hero-text .ab-title-line {
+          text-align: center;
+        }
+        .ab-hero-text .ab-text {
+          text-align: left;
         }
         .ab-metric-grid {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: repeat(4, 1fr);
           gap: 14px;
+          max-width: 640px;
+          margin: 36px auto 0;
         }
         .ab-metric-card {
           background: var(--overlay-03);
@@ -167,20 +177,6 @@ export default function AboutPage() {
           color: var(--text);
           font-weight: 600;
         }
-        .ab-portrait {
-          width: 96px;
-          height: 96px;
-          border-radius: 14px;
-          overflow: hidden;
-          border: 1px solid var(--border);
-          margin-bottom: 20px;
-        }
-        .ab-portrait img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          display: block;
-        }
         .ab-photo-section {
           margin-bottom: 70px;
         }
@@ -200,42 +196,48 @@ export default function AboutPage() {
           color: var(--muted);
           line-height: 1.6;
         }
+        .ab-pillar-list {
+          list-style: none;
+          padding: 0;
+          margin: 20px 0 0;
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 10px;
+        }
+        .ab-pillar-list li {
+          font-size: 14px;
+          color: var(--muted);
+          padding: 10px 14px;
+          border: 1px solid var(--border);
+          border-radius: 8px;
+        }
+        .ab-pillar-list strong {
+          color: var(--text);
+        }
+        .ab-tagline {
+          color: var(--accent);
+          font-style: italic;
+        }
         @media (max-width: 720px) {
-          .ab-hero { grid-template-columns: 1fr; gap: 36px; }
+          .ab-metric-grid { grid-template-columns: 1fr 1fr; }
         }
       `}</style>
 
       <main className="ab-wrap">
         {/* --- Hero / Founder --- */}
         <section className="ab-hero">
-          <div className="ab-metric-grid">
-            <div className="ab-metric-card">
-              <div className="ab-metric-value">2+</div>
-              <div className="ab-metric-label">Years Admin & Costing Experience</div>
-            </div>
-            <div className="ab-metric-card">
-              <div className="ab-metric-value">2</div>
-              <div className="ab-metric-label">Businesses Founded</div>
-            </div>
-            <div className="ab-metric-card">
-              <div className="ab-metric-value">100%</div>
-              <div className="ab-metric-label">Built & Deployed on Mobile</div>
-            </div>
-            <div className="ab-metric-card">
-              <div className="ab-metric-value">N6</div>
-              <div className="ab-metric-label">Fitter Engineering (In Progress)</div>
-            </div>
-          </div>
+          <ImageSlider
+            images={[
+              { src: "/images/about/yonela-portrait.jpg", alt: "Yonela Mjuluki" },
+            ]}
+          />
 
-          <div>
-            <div className="ab-portrait">
-              <Image src="/images/about/yonela-portrait.jpg" alt="Yonela Mjuluki" width={96} height={96} />
-            </div>
+          <div className="ab-hero-text">
             <p className="ab-eyebrow">About the Founder</p>
             <h1>
               Yonela Mjuluki <span className="ab-alias">— &quot;Goldenboy&quot;</span>
             </h1>
-            <p className="ab-title-line">Founder, Developer & Operator</p>
+            <p className="ab-title-line">Founder, Developer &amp; Operator</p>
 
             <p className="ab-text">
               Yonela Mjuluki is the founder of GoldenStore, a multi-brand e-commerce
@@ -252,6 +254,25 @@ export default function AboutPage() {
               deploys, and maintains full production systems entirely from a
               smartphone.
             </p>
+          </div>
+
+          <div className="ab-metric-grid">
+            <div className="ab-metric-card">
+              <div className="ab-metric-value">2+</div>
+              <div className="ab-metric-label">Years Admin &amp; Costing Experience</div>
+            </div>
+            <div className="ab-metric-card">
+              <div className="ab-metric-value">2</div>
+              <div className="ab-metric-label">Businesses Founded</div>
+            </div>
+            <div className="ab-metric-card">
+              <div className="ab-metric-value">100%</div>
+              <div className="ab-metric-label">Built &amp; Deployed on Mobile</div>
+            </div>
+            <div className="ab-metric-card">
+              <div className="ab-metric-value">N6</div>
+              <div className="ab-metric-label">Fitter Engineering (In Progress)</div>
+            </div>
           </div>
         </section>
 
@@ -330,18 +351,41 @@ export default function AboutPage() {
         <section className="ab-photo-section">
           <h2>Online Barber</h2>
           <p className="ab-section-sub">
-            A real, physical barbershop — run on the booking and performance-tracking
-            systems built for it.
+            Based in Gqeberha (Port Elizabeth), Eastern Cape —{" "}
+            <span className="ab-tagline">&quot;Siyeza Kuwe&quot; — We Come To You.</span>
           </p>
+
           <div className="ab-photo-frame">
-            <Image
+            <img
               src="/images/about/online-barber-team.jpg"
               alt="The Online Barber team"
-              width={1600}
-              height={1067}
+              style={{ width: "100%", height: "auto", display: "block" }}
             />
           </div>
           <p className="ab-photo-caption">The Online Barber team.</p>
+
+          <p className="ab-text" style={{ marginTop: 24 }}>
+            Online Barber is a mobile grooming brand built on a simple idea: premium
+            barbering and hairstyling should be delivered to the client, not the
+            other way around. Rather than a single storefront, it operates as a
+            physical, house-call service across Port Elizabeth and Uitenhage,
+            running on booking and performance-tracking systems built specifically
+            for the business.
+          </p>
+          <p className="ab-text">
+            Beyond the core house-call barbering service, Online Barber is growing
+            into a broader grooming and lifestyle brand for the Eastern Cape —
+            expanding into product sales, education, and community media.
+          </p>
+
+          <ul className="ab-pillar-list">
+            <li><strong>House Call Services</strong> — mobile barbering &amp; hairstyling across PE and surrounds</li>
+            <li><strong>E-Commerce</strong> — grooming products delivered across South Africa</li>
+            <li><strong>Barbering Lessons</strong> — hands-on training for aspiring barbers</li>
+            <li><strong>Pet Grooming</strong> — mobile pet grooming as a household add-on</li>
+            <li><strong>The Online_Barber Podcast</strong> — grooming culture &amp; community storytelling</li>
+            <li><strong>CubeKit™</strong> — a future portable, self-contained grooming pod (in development)</li>
+          </ul>
         </section>
 
         {/* --- Contact --- */}
