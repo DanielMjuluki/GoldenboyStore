@@ -44,8 +44,8 @@ export function HeaderNav() {
           gap: 5px;
           width: 34px;
           height: 34px;
-          background: transparent;
-          border: 1px solid var(--border);
+          background: #000;
+          border: 1px solid #333;
           border-radius: 8px;
           cursor: pointer;
           padding: 0;
@@ -55,7 +55,7 @@ export function HeaderNav() {
           height: 2px;
           margin: 0 auto;
           width: 18px;
-          background: var(--text);
+          background: #fff;
           border-radius: 2px;
           transition: transform 0.2s ease, opacity 0.2s ease;
         }
@@ -73,23 +73,26 @@ export function HeaderNav() {
           top: calc(100% + 10px);
           right: 0;
           min-width: 180px;
-          background: var(--bg);
-          border: 1px solid var(--border);
+          background: #000;
+          border: 1px solid #333;
           border-radius: 10px;
           padding: 8px;
-          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
           z-index: 60;
         }
         .hn-dropdown a {
           display: block;
           padding: 10px 12px;
           border-radius: 6px;
-          color: var(--text);
+          color: #fff;
           text-decoration: none;
           font-size: 14.5px;
         }
         .hn-dropdown a:hover {
-          background: var(--overlay-06);
+          background: rgba(255, 255, 255, 0.1);
+        }
+        .hn-dropdown a:active {
+          background: rgba(255, 255, 255, 0.16);
         }
       `}</style>
 
