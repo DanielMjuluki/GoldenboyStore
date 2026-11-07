@@ -1,0 +1,39 @@
+.ms-section{padding:2rem 0;overflow:hidden}
+.ms-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;padding:0 1rem 1rem}
+.ms-eyebrow{font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:#d4af37;margin:0}
+.ms-title{font-size:1.6rem;font-weight:800;margin:.25rem 0 0}
+.ms-all{font-size:.85rem;font-weight:600;color:#d4af37;white-space:nowrap}
+.ms-hero{position:relative;height:340px;margin:0 1rem 1.5rem;border-radius:1.25rem;overflow:hidden;background:linear-gradient(135deg,#1a1405,#3a2c08 60%,#d4af37 160%);color:#fff}
+.ms-slide{position:absolute;inset:0;display:flex;align-items:flex-end;opacity:0;transform:scale(1.05);transition:opacity .9s ease,transform 6s ease;pointer-events:none;color:#fff;text-decoration:none}
+.ms-slide.ms-active{opacity:1;transform:scale(1);pointer-events:auto}
+.ms-slide-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ms-slide-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,.05) 65%)}
+.ms-slide-body{position:relative;padding:1.25rem;display:flex;flex-direction:column;gap:.35rem}
+.ms-slide-tag{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:#d4af37}
+.ms-slide-name{font-size:1.4rem;font-weight:800;margin:0}
+.ms-slide-price{font-size:1rem;font-weight:600;margin:0}
+.ms-btn{align-self:flex-start;margin-top:.4rem;padding:.55rem 1.1rem;border-radius:999px;background:#d4af37;color:#111;font-weight:700;font-size:.85rem}
+.ms-dots{position:absolute;right:1rem;top:1rem;display:flex;gap:.4rem;z-index:2}
+.ms-dot{width:.5rem;height:.5rem;border-radius:999px;border:0;padding:0;background:rgba(255,255,255,.45);transition:width .3s,background .3s}
+.ms-dot.ms-on{width:1.4rem;background:#d4af37}
+.ms-row{margin-bottom:1.25rem}
+.ms-row-title{padding:0 1rem;font-size:1rem;font-weight:700;margin:0 0 .6rem}
+.ms-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(to right,transparent,#000 6%,#000 94%,transparent)}
+.ms-track{display:flex;width:max-content;animation:ms-scroll 40s linear infinite}
+.ms-marquee:hover .ms-track,.ms-marquee:active .ms-track{animation-play-state:paused}
+.ms-reverse .ms-track{animation-direction:reverse}
+@keyframes ms-scroll{to{transform:translateX(-50%)}}
+.ms-card{flex:0 0 auto;width:150px;margin-right:.9rem;text-decoration:none;color:inherit;transition:transform .3s ease}
+.ms-card:hover{transform:translateY(-6px)}
+.ms-card-img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:.9rem;display:block}
+.ms-card-ph{aspect-ratio:3/4;border-radius:.9rem;background:linear-gradient(135deg,rgba(212,175,55,.3),rgba(212,175,55,.05));display:flex;align-items:center;justify-content:center;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;opacity:.85;text-align:center;padding:.5rem}
+.ms-card-name{font-size:.85rem;font-weight:600;margin:.5rem 0 .1rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ms-card-price{font-size:.8rem;color:#d4af37;font-weight:700;margin:0}
+.ms-reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.ms-reveal.ms-in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+.ms-track{animation:none}
+.ms-marquee{overflow-x:auto}
+.ms-reveal{opacity:1;transform:none;transition:none}
+.ms-slide{transition:opacity .3s}
+}
