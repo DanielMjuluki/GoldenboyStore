@@ -102,6 +102,8 @@ export default function HomePage() {
         </div>
       </section>
 
+      <WelcomeIntro />
+      <DonateBanner />
       <MerchShowcase />
       <PromoCarousel />
 
