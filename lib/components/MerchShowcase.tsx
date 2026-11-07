@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import type { ProductItem } from '@/lib/data/types';
 import { formatPrice } from '@/lib/utils/currency';
+import { getProductsData } from '@/lib/utils/productsData';
 import './MerchShowcase.css';
 
 const STORE_ID = 'goldenboy-merch';
@@ -86,8 +87,7 @@ export default function MerchShowcase() {
     : placeholders('Goldenboy Merch').slice(0, 3);
 
   useEffect(() => {
-    fetch('/api/products')
-      .then((r) => r.json())
+    getProductsData()
       .then((d) => setProducts(d.products ?? []))
       .catch(() => setProducts([]))
       .finally(() => setReady(true));

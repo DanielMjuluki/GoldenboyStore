@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { ProductItem } from '@/lib/data/types';
 import { formatPrice } from '@/lib/utils/currency';
+import { getProductsData } from '@/lib/utils/productsData';
 
 export default function PromoCarousel() {
   const [products, setProducts] = useState<ProductItem[]>([]);
@@ -12,8 +13,7 @@ export default function PromoCarousel() {
   const scrollerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    fetch('/api/products')
-      .then((res) => res.json())
+    getProductsData()
       .then((data) => setProducts((data.products ?? []).filter((p: ProductItem) => p.compareAtPriceCents)))
       .catch((err) => console.error('Failed to load promo products:', err))
       .finally(() => setLoading(false));

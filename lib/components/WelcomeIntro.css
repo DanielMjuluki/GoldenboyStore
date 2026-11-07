@@ -1,0 +1,5 @@
+.wi-tabs{display:flex;gap:.4rem;margin-bottom:.8rem;overflow-x:auto}
+.wi-tab{flex:1 0 auto;padding:.55rem 1rem;border-radius:999px;font-size:.85rem;font-weight:700;border:1px solid rgba(212,175,55,.45);background:transparent;color:inherit;cursor:pointer;transition:background .25s,color .25s,transform .25s}
+.wi-tab:hover{transform:translateY(-2px)}
+.wi-tab-on{background:#d4af37;color:#111;border-color:#d4af37}
+.wi-wide{grid-column:1 / -1}

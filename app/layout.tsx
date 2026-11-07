@@ -6,6 +6,7 @@ import './globals.css';
 import { CartProvider } from '@/lib/components/CartContext';
 import { ThemeToggle } from '@/lib/components/ThemeToggle';
 import { HeaderNav } from '@/lib/components/HeaderNav';
+import WhatsAppFloat from '@/lib/components/WhatsAppFloat';
 
 // Runs before hydration so the page never flashes the wrong theme on load.
 const themeInitScript = `

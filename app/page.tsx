@@ -6,6 +6,8 @@ import { ArrowRight, Loader, Code2, Palette } from 'lucide-react';
 import type { BrandStats } from '@/lib/data/types';
 import PromoCarousel from '@/lib/components/PromoCarousel';
 import MerchShowcase from '@/lib/components/MerchShowcase';
+import WelcomeIntro from '@/lib/components/WelcomeIntro';
+import DonateBanner from '@/lib/components/DonateBanner';
 
 // Swap this for your actual latest-upload video ID once you have it —
 // this is just a working placeholder so the player is guaranteed to load.
