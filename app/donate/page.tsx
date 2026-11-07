@@ -52,10 +52,7 @@ export default function DonatePage() {
 
         <div className="donate-story-card">
           <p>
-            I'm a Mechanical Engineering student building GoldenStore as my own path toward
-            independence and impact. Right now, every bit of support here goes directly toward
-            getting back to university — covering tuition and the costs of continuing my
-            studies while I keep building this dream alongside them.
+            I'm a young founder building GoldenStore, Online Barber and more as my own path toward independence and impact. Right now, every bit of support here goes directly into growing my business: better products, more stock, stronger branding and reaching more people with what I make.
           </p>
           <p>
             My dream is bigger than any one product or platform: I want to help people, especially
@@ -66,10 +63,7 @@ export default function DonatePage() {
             "Only those who are able to seek for help can have the heart to help others."
           </blockquote>
           <p>
-            So this is me, seeking help, honestly and humbly, so I can get back into class and
-            keep building something that will one day help a lot more people than just me. Every
-            contribution, big or small, goes directly toward my tuition and this journey. Thank
-            you for being part of it.
+            So this is me, seeking help, honestly and humbly, so I can keep building something that will one day help a lot more people than just me. Every contribution, big or small, goes directly into growing my business and this journey. Thank you for being part of it.
           </p>
         </div>
       </section>

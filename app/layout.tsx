@@ -71,6 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </header>
         <CartProvider>{children}</CartProvider>
+        <WhatsAppFloat />
         <footer className="site-footer">
           <div className="site-footer-inner">
             <p>Follow the journey and stay connected.</p>

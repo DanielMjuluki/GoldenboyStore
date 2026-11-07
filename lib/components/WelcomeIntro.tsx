@@ -45,9 +45,9 @@ export default function WelcomeIntro() {
     <section className="wi">
       <p className="wi-hello">{greeting}, welcome to my world</p>
       <h2 className="wi-title">
-        I&rsquo;m a GenZ with a <span>Dream.</span>
+        I&rsquo;m building something <span>Golden.</span>
       </h2>
-      <p className="wi-sub">To help people the best way I know how.</p>
+      <p className="wi-sub">Businesses, brands and creativity, all built to help people the best way I know how.</p>
       <p className="wi-connect">Let&rsquo;s connect. Be part of my community.</p>
 
       <div className="wi-tabs" role="tablist">
@@ -91,7 +91,7 @@ export default function WelcomeIntro() {
           <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className="wi-btn wi-btn-main">
             Say hi on WhatsApp
           </a>
-          <Link href="/shop?store=goldenboy-merch" className="wi-btn">
+          <Link href="/products?store=goldenboy-merch" className="wi-btn">
             Shop the merch
           </Link>
           <Link href="/projects" className="wi-btn">
@@ -106,9 +106,9 @@ export default function WelcomeIntro() {
       {current.id === 'support' && (
         <div className="wi-actions">
           <Link href="/donate" className="wi-btn wi-btn-main wi-wide">
-            Support my dream
+            Support my business
           </Link>
-          <Link href="/shop?store=goldenboy-merch" className="wi-btn wi-wide">
+          <Link href="/products?store=goldenboy-merch" className="wi-btn wi-wide">
             Or buy merch to support me
           </Link>
         </div>

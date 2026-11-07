@@ -8,7 +8,7 @@ import { getProductsData } from '@/lib/utils/productsData';
 import './MerchShowcase.css';
 
 const STORE_ID = 'goldenboy-merch';
-const STORE_HREF = '/shop?store=goldenboy-merch';
+const STORE_HREF = '/products?store=goldenboy-merch';
 
 const ROWS = [
   { id: 'christian-tees', title: 'Christian Tees' },
