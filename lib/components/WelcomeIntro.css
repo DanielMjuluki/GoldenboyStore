@@ -26,3 +26,5 @@
 .wi-chip{padding:.5rem 1rem;border-radius:999px;font-size:.85rem;font-weight:600;text-decoration:none;color:inherit;border:1px solid rgba(212,175,55,.45);transition:background .25s,color .25s}
 .wi-chip:hover{background:#d4af37;color:#111}
 @media (prefers-reduced-motion:reduce){.wi{animation:none}.wi-play{animation:none}}
+.wi-video{aspect-ratio:9/16;max-width:380px;max-height:78vh;margin:0 auto}
+.wi-video video{object-fit:contain;background:#000}
