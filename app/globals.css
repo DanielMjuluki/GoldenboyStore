@@ -3353,3 +3353,5 @@ body.kingdome-active .site-footer {
     padding: 0 1.1rem 1.1rem;
   }
 }
+img[src*="/images/products/tees/"]{object-fit:contain!important;background:#000}
+.ms-card-img[src*="/images/products/tees/"]{aspect-ratio:1/1!important}
