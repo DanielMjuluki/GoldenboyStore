@@ -3355,3 +3355,28 @@ body.kingdome-active .site-footer {
 }
 img[src*="/images/products/tees/"]{object-fit:contain!important;background:#000}
 .ms-card-img[src*="/images/products/tees/"]{aspect-ratio:1/1!important}
+
+/* ---- Donate page redesign ---- */
+.donate-page .donate-hero{position:relative;padding:2.5rem 1.25rem 1.5rem;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(212,175,55,.22),transparent 70%)}
+.donate-page .donate-hero h1{font-size:2rem;line-height:1.1;font-weight:900;margin:.4rem 0 1.25rem}
+.donate-page .donate-hero-icon{animation:donate-beat 2.4s ease-in-out infinite}
+@keyframes donate-beat{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+.donate-page .donate-story-card{border-left:4px solid #d4af37;box-shadow:0 10px 30px rgba(212,175,55,.12);text-align:left}
+.donate-page .donate-form-section{border-radius:1.4rem;padding:1.5rem 1.25rem;box-shadow:0 12px 36px rgba(212,175,55,.15)}
+.donate-page .contact-field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.donate-page .contact-field span{font-size:.85rem;font-weight:600}
+.donate-page .contact-field input,.donate-page .contact-field textarea{width:100%;box-sizing:border-box;padding:.85rem 1rem;border-radius:.85rem;border:1px solid rgba(212,175,55,.4);background:rgba(127,127,127,.08);color:inherit;font:inherit;font-size:1rem}
+.donate-page .contact-field input:focus,.donate-page .contact-field textarea:focus{outline:none;border-color:#d4af37;box-shadow:0 0 0 3px rgba(212,175,55,.25)}
+.donate-page .donation-amount-btn{padding:.95rem .5rem;border-radius:.9rem;font-size:1rem;font-weight:800;transition:transform .2s,box-shadow .2s}
+.donate-page .donation-amount-btn:hover{transform:translateY(-3px)}
+.donate-page .donation-amount-active{box-shadow:0 6px 18px rgba(212,175,55,.4)}
+.donate-page .donation-submit{width:100%;padding:1.05rem;font-size:1.05rem;font-weight:800;border-radius:999px;animation:donate-pulse 2.4s ease-in-out infinite}
+@keyframes donate-pulse{0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,.5)}50%{box-shadow:0 0 0 12px rgba(212,175,55,0)}}
+.di{max-width:34rem;margin:1.75rem auto 0;padding:0 .25rem}
+.di-eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#d4af37;margin:0 0 .75rem;text-align:center}
+.di-grid{display:grid;gap:.75rem}
+.di-card{padding:1rem 1.1rem;border-radius:1rem;border:1px solid rgba(212,175,55,.3);background:rgba(212,175,55,.06);animation:di-in .7s ease both}
+.di-card h3{margin:0 0 .25rem;font-size:1rem}
+.di-card p{margin:0;font-size:.88rem;opacity:.85}
+@keyframes di-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.donate-page .donate-hero-icon,.donate-page .donation-submit,.di-card{animation:none}}

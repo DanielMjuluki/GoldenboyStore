@@ -1,0 +1,10 @@
+.eft{max-width:34rem;margin:1.5rem auto 0;padding:1.5rem 1.25rem;border-radius:1.25rem;border:1px solid rgba(212,175,55,.35);background:linear-gradient(145deg,rgba(212,175,55,.1),rgba(212,175,55,.02))}
+.eft-eyebrow{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:#d4af37;margin:0 0 .3rem}
+.eft-title{font-size:1.3rem;font-weight:800;margin:0 0 .3rem}
+.eft-sub{font-size:.9rem;opacity:.85;margin:0 0 1rem}
+.eft-row{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.8rem 0;border-top:1px solid rgba(212,175,55,.2)}
+.eft-label{font-size:.75rem;opacity:.7;margin:0}
+.eft-value{font-size:1.05rem;font-weight:700;margin:.1rem 0 0;word-break:break-all}
+.eft-copy{display:inline-flex;align-items:center;gap:.35rem;padding:.5rem .85rem;border-radius:999px;border:1px solid rgba(212,175,55,.6);background:transparent;color:inherit;font:inherit;font-size:.8rem;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+.eft-copy:hover,.eft-copy-done{background:#d4af37;color:#111}
+.eft-note{font-size:.8rem;opacity:.75;margin:1rem 0 0}

@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { Heart, ShieldCheck } from 'lucide-react';
+import DonateImpact from '@/lib/components/DonateImpact';
+import EftDonation from '@/lib/components/EftDonation';
 
 const PRESET_AMOUNTS = [10, 25, 50, 100, 250, 500];
 
@@ -134,6 +136,9 @@ export default function DonatePage() {
             complete your donation.
           </p>
         </form>
+
+        <DonateImpact />
+        <EftDonation />
       </section>
     </main>
   );
