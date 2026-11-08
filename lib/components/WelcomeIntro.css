@@ -28,3 +28,5 @@
 @media (prefers-reduced-motion:reduce){.wi{animation:none}.wi-play{animation:none}}
 .wi-video{aspect-ratio:9/16;max-width:380px;max-height:78vh;margin:0 auto}
 .wi-video video{object-fit:contain;background:#000}
+.wi-video{aspect-ratio:4/3;max-width:100%;max-height:none;margin:0}
+.wi-video video{object-fit:contain;background:#000}

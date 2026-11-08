@@ -6,6 +6,9 @@ import { ArrowRight, Loader, Code2, Palette } from 'lucide-react';
 import type { BrandStats } from '@/lib/data/types';
 import PromoCarousel from '@/lib/components/PromoCarousel';
 import MerchShowcase from '@/lib/components/MerchShowcase';
+import HeroHeadline from '@/lib/components/HeroHeadline';
+import CountUp from '@/lib/components/CountUp';
+import BrandTicker from '@/lib/components/BrandTicker';
 import WelcomeIntro from '@/lib/components/WelcomeIntro';
 import DonateBanner from '@/lib/components/DonateBanner';
 
@@ -70,7 +73,7 @@ export default function HomePage() {
       <section className="hero-panel">
         <div className="hero-copy">
           <p className="eyebrow">GoldenStore</p>
-          <h1>Creator. Brand. Commerce.</h1>
+          <HeroHeadline />
           <p className="intro-copy">
             I build content, products, and digital experiences that turn attention into income.
           </p>
@@ -89,7 +92,7 @@ export default function HomePage() {
           <div className="hero-stats">
             {displayStats.map((stat, i) => (
               <div key={i} className="stat-block">
-                <div className="stat-value">{stat.value}</div>
+                <div className="stat-value"><CountUp value={stat.value} /></div>
                 <div className="stat-label">{stat.label}</div>
               </div>
             ))}
@@ -102,6 +105,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      <BrandTicker />
       <WelcomeIntro />
       <DonateBanner />
       <MerchShowcase />

@@ -3380,3 +3380,15 @@ img[src*="/images/products/tees/"]{object-fit:contain!important;background:#000}
 .di-card p{margin:0;font-size:.88rem;opacity:.85}
 @keyframes di-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.donate-page .donate-hero-icon,.donate-page .donation-submit,.di-card{animation:none}}
+
+/* ---- Donate page: phone layout ---- */
+@media (max-width:820px){
+.donate-page{overflow-x:hidden}
+.donate-page .donate-form-section{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:1.25rem;padding-left:.75rem;padding-right:.75rem}
+.donate-page .donate-form-section>*{width:100%!important;max-width:100%!important;min-width:0!important;margin-left:0!important;margin-right:0!important;box-sizing:border-box}
+.donate-page .donate-hero h1{font-size:1.6rem}
+.donate-page .donate-story-card{padding:1.1rem 1rem}
+.donate-page .donate-story-card p{font-size:.95rem}
+.donate-page .donation-amount-btn{padding:.75rem .25rem;font-size:.95rem}
+.eft,.di{margin-top:0}
+}
