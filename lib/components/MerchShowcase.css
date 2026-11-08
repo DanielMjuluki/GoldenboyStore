@@ -37,3 +37,8 @@
 .ms-reveal{opacity:1;transform:none;transition:none}
 .ms-slide{transition:opacity .3s}
 }
+.ms-card{width:min(88vw,460px);margin-right:1rem}
+.ms-card .ms-card-img[src*="/images/products/tees/"]{aspect-ratio:2/1!important;object-fit:contain!important;background:#000}
+.ms-card-ph{aspect-ratio:2/1}
+.ms-card-name{font-size:1rem;margin:.6rem 0 .15rem}
+.ms-card-price{font-size:.95rem}
