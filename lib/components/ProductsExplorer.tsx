@@ -1,5 +1,6 @@
 'use client';
 
+import CyclingImage from '@/lib/components/CyclingImage';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -131,7 +132,7 @@ export default function ProductsExplorer({
               <div key={product.id} className="product-card">
                 {product.images.length > 0 && (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={product.images[0]} alt={product.name} className="product-card-image" />
+                  <CyclingImage images={product.images} alt={product.name} className="product-card-image" />
                 )}
                 <div className="product-card-header">
                   {product.stockQuantity === null ? (
