@@ -1,12 +1,18 @@
 import type { Metadata } from 'next';
 import ServicesContent from '@/lib/components/ServicesContent';
+import MoreServices from '@/lib/components/MoreServices';
 
 export const metadata: Metadata = {
-  title: 'Services — Branding, Printing & Web Design',
+  title: 'Services — Custom Tees, Printing, Web Design & Furniture',
   description:
-    'Business branding, printing, and web design services in South Africa. Logos, business cards, signage, and launch-ready websites built to fit your budget.',
+    'Custom tees and uniforms, business branding and printing, websites and online stores, and furniture and house decor in Port Elizabeth, South Africa. Request a quote.',
 };
 
 export default function ServicesPage() {
-  return <ServicesContent />;
+  return (
+    <>
+      <ServicesContent />
+      <MoreServices />
+    </>
+  );
 }
