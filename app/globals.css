@@ -3392,3 +3392,35 @@ img[src*="/images/products/tees/"]{object-fit:contain!important;background:#000}
 .donate-page .donation-amount-btn{padding:.75rem .25rem;font-size:.95rem}
 .eft,.di{margin-top:0}
 }
+
+/* ---- Professional theme: solid colours, gold only on main buttons ---- */
+body .wi-hello,body .ms-eyebrow,body .sv-eyebrow,body .db-eyebrow,body .hi-eyebrow,body .eft-eyebrow,body .di-eyebrow{color:inherit;opacity:.6}
+body .wi-connect,body .ms-all,body .hi-all,body .sv-link,body .ms-card-price,body .hi-card-price,body .eft-label{color:inherit}
+body .wi-title span,body .sv-title span,body .db-title span,body .hi h1 span{color:inherit;background:none;-webkit-text-fill-color:currentColor;animation:none}
+body .hh-gold{background:none;color:inherit;-webkit-text-fill-color:currentColor;animation:hh-in .8s cubic-bezier(.2,.8,.2,1) forwards}
+body .sv-card,body .hi-card,body .eft,body .di-card,body .hi-box,body .ms-card-ph,body .hi-trust div{background:rgba(127,127,127,.07);border:1px solid rgba(127,127,127,.28);box-shadow:none}
+body .sv-card:hover,body .hi-card:hover{box-shadow:none;transform:translateY(-2px)}
+body .sv-icon{background:rgba(127,127,127,.18);color:inherit}
+body .hi-card-img{background:rgba(127,127,127,.12)}
+body .wi-btn,body .hi-btn,body .wi-chip,body .hi-chip,body .eft-copy,body .sv-cta{border:1px solid rgba(127,127,127,.45);background:transparent;color:inherit}
+body .sv-cta{background:rgba(127,127,127,.16)}
+body .wi-chip:hover,body .hi-chip:hover,body .eft-copy:hover,body .wi-btn:hover{background:rgba(127,127,127,.18);color:inherit}
+body .eft-copy-done{background:rgba(127,127,127,.25);color:inherit}
+body .wi-btn-main,body .hi-btn-main{background:#d4af37;color:#111;border-color:#d4af37}
+body .hi-card-buy,body .ms-btn{background:rgba(127,127,127,.2);color:inherit;border:1px solid rgba(127,127,127,.4)}
+body .hi-btn-main::after,body .hero-actions .button-primary::after{display:none}
+body .wi-video,body .hi-video{background:#111;box-shadow:none}
+body .wi-play{animation:none;background:#fff;color:#111}
+body .db{background:#1b1b1d;color:#fff;box-shadow:none;animation:none}
+body .db::before,body .db-ring{display:none}
+body .db-eyebrow{color:#bbb;opacity:1}
+body .db-btn{background:#d4af37;color:#111;animation:none}
+body .hero-panel::before,body .hero-panel::after{display:none}
+body .hero-card{animation:hm-up .9s ease .5s both}
+body .bt{border-color:rgba(127,127,127,.3)}
+body .bt-dot{color:inherit;opacity:.5}
+body a[aria-label*="WhatsApp"]{animation:none!important}
+body .donate-page .donate-hero{background:none}
+body .donate-page .donate-hero-icon,body .donate-page .donation-submit{animation:none}
+body .donate-page .donate-story-card{border-left:3px solid rgba(127,127,127,.5);box-shadow:none}
+body .donate-page .donate-form-section,body .donate-page .donation-amount-active{box-shadow:none}
