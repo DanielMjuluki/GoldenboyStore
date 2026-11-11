@@ -42,3 +42,8 @@
 .ms-card-ph{aspect-ratio:2/1}
 .ms-card-name{font-size:1rem;margin:.6rem 0 .15rem}
 .ms-card-price{font-size:.95rem}
+.ms-card.ms-service{width:min(72vw,260px);margin-right:1rem;padding:1.1rem;border:1px solid var(--border);border-radius:1rem;background:var(--overlay-04);display:flex;flex-direction:column;gap:.5rem;min-height:170px;text-decoration:none;color:inherit}
+.ms-svc-icon{width:2.4rem;height:2.4rem;border-radius:.7rem;background:var(--overlay-10);display:flex;align-items:center;justify-content:center}
+.ms-service h4{margin:.2rem 0 0;font-size:1rem;font-weight:700;line-height:1.25}
+.ms-service p{margin:0;font-size:.85rem;color:var(--muted);line-height:1.35;white-space:normal}
+.ms-svc-link{margin-top:auto;font-size:.85rem;font-weight:700}
