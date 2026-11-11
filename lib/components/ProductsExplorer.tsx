@@ -103,14 +103,14 @@ export default function ProductsExplorer({
         </div>
       </section>
 
-      {isKingdome ? (
+      {lockedTab ? (
         <section className="kingdome-products-grid">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <Link key={product.id} href={`/products/${product.id}`} className="kingdome-product-card">
                 {product.images.length > 0 && (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={product.images[0]} alt={product.name} className="kingdome-product-image" />
+                  <CyclingImage images={product.images} alt={product.name} className="kingdome-product-image" />
                 )}
                 <p className="kingdome-product-name">{product.name}</p>
                 <p className="kingdome-product-price">{formatPrice(product.priceCents, product.currency)}</p>
