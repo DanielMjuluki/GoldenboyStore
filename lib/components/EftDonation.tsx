@@ -7,7 +7,7 @@ import './EftDonation.css';
 const DETAILS = [
   { label: 'Bank', value: 'Absa', copy: false },
   { label: 'Account holder', value: 'Yonela Mjuluki', copy: false },
-  { label: 'Account number', value: '4120384080', copy: true },
+  { label: 'Account number', value: '4120374080', copy: true },
   { label: 'Branch code', value: '632005', copy: true },
   { label: 'Reference', value: 'GOLDENBOY', copy: true },
 ];

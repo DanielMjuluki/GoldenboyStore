@@ -11,6 +11,7 @@ import CountUp from '@/lib/components/CountUp';
 import BrandTicker from '@/lib/components/BrandTicker';
 import WelcomeIntro from '@/lib/components/WelcomeIntro';
 import DonateBanner from '@/lib/components/DonateBanner';
+import EftDonation from '@/lib/components/EftDonation';
 
 // Swap this for your actual latest-upload video ID once you have it —
 // this is just a working placeholder so the player is guaranteed to load.
@@ -108,6 +109,7 @@ export default function HomePage() {
       <BrandTicker />
       <WelcomeIntro />
       <DonateBanner />
+      <EftDonation />
       <MerchShowcase />
       <PromoCarousel />
 
